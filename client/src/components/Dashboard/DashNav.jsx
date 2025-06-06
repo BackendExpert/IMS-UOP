@@ -8,8 +8,8 @@ const DashNav = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const menuRef = useRef(null);
 
-    const { username, roles } = getUserInfoFromToken();
-    const role = roles[0]?.name || '';
+    const { username, roles } = getUserInfoFromToken() || {};
+    const role = roles?.[0]?.name || '';
 
     const toggleMenu = () => setMenuOpen(prev => !prev);
 
@@ -38,43 +38,53 @@ const DashNav = () => {
     }, []);
 
     return (
-        <nav className="flex justify-between items-center px-6 py-4 bg-white">
-            <h1 className="text-2xl font-extrabold text-emerald-600 tracking-tight">Dashboard</h1>
+        <nav className="flex justify-between items-center px-6 py-4 bg-white shadow-md rounded-b-3xl">
+            <h1 className="text-3xl font-extrabold text-emerald-600 tracking-wide select-none drop-shadow-sm">Dashboard</h1>
 
             <div className="relative">
                 <button
                     onClick={toggleMenu}
                     aria-haspopup="true"
                     aria-expanded={menuOpen}
-                    className="flex items-center gap-3 focus:outline-none"
+                    className="flex items-center gap-3 focus:outline-none group"
                 >
-                    <img src={DashUser} alt="user" className="h-11 w-11 rounded-full border-2 border-emerald-500 shadow-sm" />
-                    <span className="hidden sm:inline font-semibold uppercase text-gray-700">{username}</span>
+                    <img
+                        src={DashUser}
+                        alt="user"
+                        className="h-12 w-12 rounded-full border-2 border-emerald-500 shadow-md transition-transform group-hover:scale-105"
+                    />
+                    <span className="hidden sm:inline font-semibold uppercase text-gray-700 tracking-wide">{username}</span>
                     <span className="absolute bottom-1 right-0 h-3 w-3 bg-emerald-400 border-2 border-white rounded-full animate-pulse" />
                 </button>
 
                 <div
                     ref={menuRef}
-                    className={`absolute right-0 mt-3 w-72 origin-top-right bg-white border border-gray-100 shadow-lg rounded-3xl overflow-hidden transition transform 
-                        ${menuOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}
+                    className={`absolute right-0 mt-3 w-72 origin-top-right bg-white border border-gray-200 shadow-lg rounded-3xl overflow-hidden transition-transform duration-200
+                        ${menuOpen ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'}`}
                 >
-                    <div className="p-5 border-b text-center">
-                        <img src={DashUser} alt="user" className="h-20 w-20 rounded-full mx-auto border shadow" />
-                        <h2 className="pt-2 text-lg font-bold text-gray-800">{username}</h2>
-                        <p className="text-xs text-gray-500 uppercase font-medium">{role}</p>
+                    <div className="p-5 border-b border-emerald-200 text-center bg-emerald-50">
+                        <img src={DashUser} alt="user" className="h-20 w-20 rounded-full mx-auto border border-emerald-200 shadow-lg" />
+                        <h2 className="pt-2 text-lg font-bold text-gray-900">{username}</h2>
+                        <p className="text-xs text-emerald-600 uppercase font-semibold tracking-wide">{role}</p>
                     </div>
-                    <div className="p-3 space-y-1">
-                        <a href="/Dashboard/Profile" className="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-amber-100 text-amber-700 transition">
-                            <FaUserCog /> Profile
+                    <div className="p-3 space-y-2">
+                        <a
+                            href="/Dashboard/Profile"
+                            className="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-emerald-100 text-emerald-700 transition font-semibold"
+                        >
+                            <FaUserCog className="text-lg" /> Profile
                         </a>
-                        <a href="#" className="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-amber-100 text-amber-700 transition">
-                            <FaGear /> Settings
+                        <a
+                            href="#"
+                            className="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-emerald-100 text-emerald-700 transition font-semibold"
+                        >
+                            <FaGear className="text-lg" /> Settings
                         </a>
                         <button
                             onClick={handleLogout}
-                            className="w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-red-50 text-red-600 transition"
+                            className="w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-red-50 text-red-600 font-semibold transition"
                         >
-                            <FaPowerOff /> Logout
+                            <FaPowerOff className="text-lg" /> Logout
                         </button>
                     </div>
                 </div>
