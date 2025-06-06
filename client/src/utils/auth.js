@@ -18,7 +18,7 @@ export function getUserInfoFromToken() {
             return null;
         }
 
-        secureLocalStorage.setItem('loginE', email)
+        localStorage.setItem('loginE', email)
 
         return { username, email, roles };
     } catch (error) {
