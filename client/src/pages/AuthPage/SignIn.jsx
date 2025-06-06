@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import localStorage from 'react-secure-storage';
 import DefaultInput from '../../components/Form/DefaultInput';
-import DefaultBtn from '../../components/Buttons/DefaultBtn';
+import DefaultBtn from '../../components/Button/DefaultBtn';
 
 import uopLogo from '../../assets/uoplogo.png';
 
@@ -67,14 +67,11 @@ const SignIn = () => {
                 <div className="flex flex-col items-center mb-8 md:mb-0 md:mr-10">
                     <img src={uopLogo} alt="University Logo" className="md:h-32 w-auto mb-4" />
                     <h1 className="text-lg text-center font-medium text-gray-800">
-                        Welcome to Hostel Management System
+                        Welcome to Internship Monitoring System
                     </h1>
-                    <h1 className="text-sm text-gray-700 mt-2">Read SignUp Guides</h1>
+                    <h1 className="text-sm text-gray-700 mt-2">Read SignUp Guide for Intern</h1>
                     <div className="mt-2">
-                        <DefaultBtn type="button" label="Read Student Guide" onClick={() => setShowStudentGuide(true)} />
-                    </div>
-                    <div className="mt-2">
-                        <DefaultBtn type="button" label="Warden SignUp Guide" onClick={() => setShowWardenGuide(true)} />
+                        <DefaultBtn type="button" label="Read Intern Guide" onClick={() => setShowStudentGuide(true)} />
                     </div>
                 </div>
 
@@ -119,40 +116,26 @@ const SignIn = () => {
             </div>
 
             <footer className="text-center text-sm text-gray-600 mt-10">
-                &copy; {new Date().getFullYear()} University of Peradeniya | Hostel Management System
+                &copy; {new Date().getFullYear()} University of Peradeniya | Internship Monitoring System
             </footer>
 
             {/* Student Guide Modal */}
             {showStudentGuide && (
                 <Modal
-                    title="Student Sign-Up Guide"
+                    title="Intern Sign-Up Guide"
                     content={
                         <ul className="list-disc ml-5 space-y-2">
-                            <li>wait for email to confram that your account is Created and Active.</li>
-                            <li>if you got the email there are credentials to log in to system</li>
-                            <li>Eveny Student Account Defult Password is <strong>12345678</strong></li>
-                            <li><span className='uppercase font-semibold text-red-500'>important</span>: After Login with credentials please update the Password.</li>
+                            <li>After manual registration, create an account in this system.</li>
+                            <li>After creating the account, verify your email (an OTP will be sent to your provided email address).</li>
+                            <li>Wait for the account to be approved by the administration.</li>
+                            <li>Once approved, update your intern information.</li>
                         </ul>
+
                     }
                     onClose={() => setShowStudentGuide(false)}
                 />
             )}
 
-            {/* Warden Guide Modal */}
-            {showWardenGuide && (
-                <Modal
-                    title="Warden Sign-Up Guide"
-                    content={
-                        <ul className="list-disc ml-5 space-y-2">
-                            <li>Sign up using official university credentials.</li>
-                            <li>Then you goto Email Verify page if you not verify email at that stage you cannot verify email after</li>
-                            <li>Your account will be verified by the admin.</li>
-                            <li>Once approved, you can go to Dashboard.</li>
-                        </ul>
-                    }
-                    onClose={() => setShowWardenGuide(false)}
-                />
-            )}
         </div>
     );
 };

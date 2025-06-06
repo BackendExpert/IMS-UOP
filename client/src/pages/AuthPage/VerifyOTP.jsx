@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import DefaultInput from '../../components/Form/DefaultInput';
-import DefaultBtn from '../../components/Buttons/DefaultBtn';
+import DefaultBtn from '../../components/Button/DefaultBtn';
 import { useNavigate } from 'react-router-dom';
 import uopLogo from '../../assets/uoplogo.png';
 
@@ -69,7 +69,7 @@ const VerifyOTP = () => {
             </div>
 
             <footer className="text-center text-sm text-gray-600 mt-10">
-                &copy; {new Date().getFullYear()} University of Peradeniya | Hostel Management System
+                &copy; {new Date().getFullYear()} University of Peradeniya | Internship Monitoring System
             </footer>
         </div>
     );
