@@ -4,6 +4,7 @@ import DateInput from '../../components/Form/DateInput';
 import Dropdown from '../../components/Form/Dropdown';
 import FileInput from '../../components/Form/FileInput';
 import TextAreaInput from '../../components/Form/TextAreaInput';
+import DefaultBtn from '../../components/Button/DefaultBtn';
 
 const Home = () => {
     const [form, setForm] = React.useState({
@@ -27,9 +28,12 @@ const Home = () => {
             />
             <FileInput label="Upload Report" name="file" onChange={e => setForm({ ...form, file: e.target.files[0] })} accept=".pdf,.docx" />
             <TextAreaInput label="Description" name="description" value={form.description} onChange={e => setForm({ ...form, description: e.target.value })} />
-            <button type="submit" className="rounded-xl bg-primary-600 px-6 py-2 text-white hover:bg-primary-700 transition">
-                Submit
-            </button>
+            
+            <DefaultBtn 
+                type='submit'
+                label='Create Student'
+            />
+
         </form>
     );
 };
