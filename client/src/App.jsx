@@ -9,7 +9,11 @@ import ForgetPass from './pages/AuthPage/ForgetPass'
 import VerifyOTP from './pages/AuthPage/VerifyOTP'
 import VerifyEmail from './pages/AuthPage/VerifyEmail'
 import UpdateNewPass from './pages/AuthPage/UpdateNewPass'
+import PrivateRoute from './Auth/PrivateRoute'
 
+
+import Dashboard from './components/Dashboard/Dashboard'
+import DashHome from './pages/DashHome/DashHome'
 
 function App() {
     const [count, setCount] = useState(0)
@@ -24,6 +28,10 @@ function App() {
                     <Route path='/verify-otp' element={<VerifyOTP />} />
                     <Route path='/update-new-pass' element={<UpdateNewPass />} />
                     <Route path='/verify-email' element={<VerifyEmail />} />
+
+                    <Route path='/Dashboard/' element={<PrivateRoute element={<Dashboard /> }/> } >
+                        <Route path='Home' element={<PrivateRoute element={<DashHome /> } /> } />
+                    </Route>
                 </Routes>
             </BrowserRouter>
         </>
