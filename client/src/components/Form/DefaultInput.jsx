@@ -27,8 +27,9 @@ const DefaultInput = ({
                 onChange={onChange}
                 required={required}
                 placeholder={placeholder}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-500 transition"
+                className="w-full rounded-2xl border border-gray-300 bg-white px-4 py-2 text-sm text-gray-800 placeholder-gray-400 shadow-sm transition focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
+
         </div>
     )
 }

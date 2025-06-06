@@ -16,7 +16,7 @@ const FileInput = ({ label, name, onChange, required = false, accept, multiple =
                 required={required}
                 accept={accept}
                 multiple={multiple}
-                className="block w-full text-sm text-gray-700 border border-gray-300 rounded-md bg-white file:px-4 file:py-2 file:mr-4 file:border-0 file:bg-gray-100 file:text-gray-800 file:rounded-md hover:file:bg-gray-200 transition"
+                className="block w-full cursor-pointer rounded-2xl border border-gray-300 bg-white text-sm text-gray-700 file:mr-4 file:rounded-2xl file:border-0 file:bg-gray-100 file:px-4 file:py-2 file:text-sm file:text-gray-800 hover:file:bg-gray-200 transition"
             />
         </div>
     )
