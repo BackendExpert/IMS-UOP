@@ -11,13 +11,19 @@ import VerifyEmail from './pages/AuthPage/VerifyEmail'
 import UpdateNewPass from './pages/AuthPage/UpdateNewPass'
 import PrivateRoute from './Auth/PrivateRoute'
 
+import RolePermissions from './pages/Permissions/RolePermissions'
+import CreateRolePermissions from './pages/Permissions/CreateRolePermissions'
+import ViewOneRole from './pages/Permissions/ViewOneRole'
+import UserManage from './pages/Users/UserManage'
+import ViewUser from './pages/Users/ViewUser'
+import Profile from './pages/Profile/Profile'
 
 import Dashboard from './components/Dashboard/Dashboard'
 import DashHome from './pages/DashHome/DashHome'
+import DashError from './components/Errors/DashError'
 
-function App() {
-    const [count, setCount] = useState(0)
 
+function App() {    
     return (
         <>
             <BrowserRouter>
@@ -29,8 +35,19 @@ function App() {
                     <Route path='/update-new-pass' element={<UpdateNewPass />} />
                     <Route path='/verify-email' element={<VerifyEmail />} />
 
-                    <Route path='/Dashboard/' element={<PrivateRoute element={<Dashboard /> }/> } >
-                        <Route path='Home' element={<PrivateRoute element={<DashHome /> } /> } />
+                    <Route path='/Dashboard/' element={<PrivateRoute element={<Dashboard />} />} >
+                        <Route path='*' element={<DashError />} />
+                        <Route path='Home' element={<PrivateRoute element={<DashHome />} />} />
+
+                        <Route path='Permissions' element={<PrivateRoute element={<RolePermissions />} />} />
+                        <Route path='Create-Permissions' element={<PrivateRoute element={<CreateRolePermissions />} />} />
+                        <Route path='View-One-Role/:id' element={<PrivateRoute element={<ViewOneRole />} />} />
+
+                        <Route path='Users' element={<PrivateRoute element={<UserManage />} />} />
+                        <Route path='View-user/:id' element={<PrivateRoute element={<ViewUser />} />} />
+
+                        <Route path='Profile' element={<PrivateRoute element={<Profile />} />} />
+
                     </Route>
                 </Routes>
             </BrowserRouter>
