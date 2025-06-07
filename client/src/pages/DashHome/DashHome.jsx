@@ -35,7 +35,7 @@ const DashHome = () => {
                 </h1>
                 <p className="text-center text-emerald-800 text-lg">
                     Welcome <span className="font-semibold">{userInfo.username}</span>! This is your{' '}
-                    <span className="font-semibold">{dashboardText.toLowerCase()}</span> for the hostel management system.
+                    <span className="font-semibold">{dashboardText.toLowerCase()}</span> for the Internship Monitoring System.
                 </p>
             </div>
         </div>
