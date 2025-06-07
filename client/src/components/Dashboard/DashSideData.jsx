@@ -12,36 +12,36 @@ const dashsidedata = [
         link: '/Dashboard/Home',
         icon: MdDashboard
     },
-    {
-        id: 2,
-        name: 'Hostel',
-        link: '/Dashboard/Hostels',
-        icon: FaSchool
-    },
-    {
-        id: 4,
-        name: 'Rooms',
-        link: '/Dashboard/Rooms',
-        icon: MdBedroomParent
-    },
-    {
-        id: 5,
-        name: 'Rooms',
-        link: '/Dashboard/WardenRooms',
-        icon: MdBedroomParent
-    },
-    {
-        id: 6,
-        name: 'Students',
-        link: '/Dashboard/Students',
-        icon: FaUserGraduate
-    },
-    {
-        id: 7,
-        name: 'Students',
-        link: '/Dashboard/WardenStudents',
-        icon: FaUserGraduate
-    },
+    // {
+    //     id: 2,
+    //     name: 'Hostel',
+    //     link: '/Dashboard/Hostels',
+    //     icon: FaSchool
+    // },
+    // {
+    //     id: 4,
+    //     name: 'Rooms',
+    //     link: '/Dashboard/Rooms',
+    //     icon: MdBedroomParent
+    // },
+    // {
+    //     id: 5,
+    //     name: 'Rooms',
+    //     link: '/Dashboard/WardenRooms',
+    //     icon: MdBedroomParent
+    // },
+    // {
+    //     id: 6,
+    //     name: 'Students',
+    //     link: '/Dashboard/Students',
+    //     icon: FaUserGraduate
+    // },
+    // {
+    //     id: 7,
+    //     name: 'Students',
+    //     link: '/Dashboard/WardenStudents',
+    //     icon: FaUserGraduate
+    // },
     {
         id: 8,
         name: 'Profile',
@@ -60,18 +60,18 @@ const dashsidedata = [
         link: '/Dashboard/Users',
         icon: FaUsers
     },
-    {
-        id: 11,
-        name: 'EmergencyContact',
-        link: '/Dashboard/EmergencyContact',
-        icon: MdContactEmergency
-    },
-    {
-        id: 12,
-        name: 'Extra Needs',
-        link: '/Dashboard/ExtraNeeds',
-        icon: FaHouseUser
-    },
+    // {
+    //     id: 11,
+    //     name: 'EmergencyContact',
+    //     link: '/Dashboard/EmergencyContact',
+    //     icon: MdContactEmergency
+    // },
+    // {
+    //     id: 12,
+    //     name: 'Extra Needs',
+    //     link: '/Dashboard/ExtraNeeds',
+    //     icon: FaHouseUser
+    // },
 ]
 
 export { dashsidedata }
