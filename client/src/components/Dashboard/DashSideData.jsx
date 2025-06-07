@@ -1,9 +1,6 @@
-import { MdBedroomParent, MdDashboard, MdAdminPanelSettings } from "react-icons/md";
-import { FaSchool, FaUserGraduate, FaGear } from "react-icons/fa6";
-import { FaUserCog, FaUsers, FaUserLock } from "react-icons/fa";
-import { MdContactEmergency } from "react-icons/md";
-import { FaHouseUser } from "react-icons/fa";
-
+import { MdDashboard, MdAdminPanelSettings, MdContactEmergency, MdBedroomParent } from "react-icons/md";
+import { FaSchool, FaUserGraduate, FaGear, FaUsers, FaUserLock, FaHouseUser } from "react-icons/fa6";
+import { FaClipboardList, FaChalkboardTeacher, FaEnvelopeOpenText, FaUserFriends, FaCalendarCheck, FaProjectDiagram, FaIdBadge } from "react-icons/fa";
 
 const dashsidedata = [
     {
@@ -12,66 +9,106 @@ const dashsidedata = [
         link: '/Dashboard/Home',
         icon: MdDashboard
     },
-    // {
-    //     id: 2,
-    //     name: 'Hostel',
-    //     link: '/Dashboard/Hostels',
-    //     icon: FaSchool
-    // },
-    // {
-    //     id: 4,
-    //     name: 'Rooms',
-    //     link: '/Dashboard/Rooms',
-    //     icon: MdBedroomParent
-    // },
-    // {
-    //     id: 5,
-    //     name: 'Rooms',
-    //     link: '/Dashboard/WardenRooms',
-    //     icon: MdBedroomParent
-    // },
-    // {
-    //     id: 6,
-    //     name: 'Students',
-    //     link: '/Dashboard/Students',
-    //     icon: FaUserGraduate
-    // },
-    // {
-    //     id: 7,
-    //     name: 'Students',
-    //     link: '/Dashboard/WardenStudents',
-    //     icon: FaUserGraduate
-    // },
     {
-        id: 8,
-        name: 'Profile',
-        link: '/Dashboard/Profile',
-        icon: FaUserCog,
+        id: 2,
+        name: 'Manage Interns',
+        link: '/Dashboard/ManageInterns',
+        icon: FaUserGraduate
     },
     {
+        id: 3,
+        name: 'Manage Supervisor',
+        link: '/Dashboard/ManageSupervisor',
+        icon: FaChalkboardTeacher
+    },
+    {
+        id: 4,
+        name: 'Projects',
+        link: '/Dashboard/Projects',
+        icon: FaProjectDiagram
+    },
+    {
+        id: 5,
+        name: 'Attendance',
+        link: '/Dashboard/Attendance',
+        icon: FaCalendarCheck
+    },
+    {
+        id: 6,
+        name: 'Letters',
+        link: '/Dashboard/Letters',
+        icon: FaEnvelopeOpenText
+    },
+    {
+        id: 7,
+        name: 'Letter Approvals',
+        link: '/Dashboard/LetterApprovals',
+        icon: FaClipboardList
+    },
+
+    // supervisor
+    {
+        id: 8,
+        name: 'My Interns',
+        link: '/Dashboard/MyInterns',
+        icon: FaUserFriends
+    },
+
+    // Intern
+    {
         id: 9,
+        name: 'My Letters',
+        link: '/Dashboard/MyLetters',
+        icon: FaEnvelopeOpenText
+    },
+
+    // Supervisor
+    {
+        id: 10,
+        name: 'Supervisor Projects',
+        link: '/Dashboard/SupervisorProjects',
+        icon: FaProjectDiagram
+    },
+
+    // Intern
+    {
+        id: 11,
+        name: 'My Projects',
+        link: '/Dashboard/MyProjects',
+        icon: FaClipboardList
+    },
+
+    {
+        id: 12,
+        name: 'Interns Attendance',
+        link: '/Dashboard/InternsAttendance',
+        icon: FaCalendarCheck
+    },
+
+    {
+        id: 13,
+        name: 'My Attendance',
+        link: '/Dashboard/MyAttendance',
+        icon: FaIdBadge
+    },
+    {
+        id: 14,
+        name: 'Profile',
+        link: '/Dashboard/Profile',
+        icon: FaGear,
+    },
+    {
+        id: 15,
         name: 'Permission',
         link: '/Dashboard/Permissions',
         icon: FaUserLock
     },
     {
-        id: 10,
+        id: 16,
         name: 'Users',
         link: '/Dashboard/Users',
         icon: FaUsers
     },
-    // {
-    //     id: 11,
-    //     name: 'EmergencyContact',
-    //     link: '/Dashboard/EmergencyContact',
-    //     icon: MdContactEmergency
-    // },
-    // {
-    //     id: 12,
-    //     name: 'Extra Needs',
-    //     link: '/Dashboard/ExtraNeeds',
-    //     icon: FaHouseUser
-    // },
-]
+];
 
-export { dashsidedata }
+export { dashsidedata };
