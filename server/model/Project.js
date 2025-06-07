@@ -11,6 +11,11 @@ const ProjectSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    giturl: {
+        type: String,
+        required: true,
+        unique: true
+    },
     pmembers: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
