@@ -1,46 +1,45 @@
 import React from 'react';
 import { getUserInfoFromToken } from '../../utils/auth'; // Adjust path accordingly
 
-
 const DashHome = () => {
     const userInfo = getUserInfoFromToken();
 
     if (!userInfo) {
         return (
-            <div className="bg-gray-100 p-4">
-                <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full text-center">
-                    <h1 className="text-xl font-semibold text-red-500">User not logged in</h1>
-                    <p>Please log in to access the dashboard.</p>
+            <div className="flex justify-center items-center min-h-screen bg-emerald-50 p-4">
+                <div className="bg-white shadow-lg rounded-xl p-8 max-w-sm w-full text-center">
+                    <h1 className="text-2xl font-bold text-red-600 mb-3">
+                        User Not Logged In
+                    </h1>
+                    <p className="text-gray-700">
+                        Please log in to access the dashboard.
+                    </p>
                 </div>
             </div>
         );
     }
 
-    // Handle roles as either [{ name: 'admin' }] or ['admin']
     const roleRaw = userInfo.roles[0];
     const role = typeof roleRaw === 'string' ? roleRaw.toLowerCase() : roleRaw?.name?.toLowerCase();
 
     let dashboardText = 'Dashboard';
-
-    if (role === 'admin') {
-        dashboardText = 'Admin Dashboard';
-    } else if (role === 'director') {
-        dashboardText = 'Director Dashboard';
-    } else if (role === 'warden') {
-        dashboardText = 'Warden Dashboard';
-    }
+    if (role === 'admin') dashboardText = 'Admin Dashboard';
+    else if (role === 'director') dashboardText = 'Director Dashboard';
+    else if (role === 'warden') dashboardText = 'Warden Dashboard';
 
     return (
-        <div className="p-4">
-            <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
-                <h1 className="text-2xl font-bold mb-4">{dashboardText}</h1>
-                <p className="text-gray-700">
-                    Welcome {userInfo.username}! This is your {dashboardText.toLowerCase()} for the Internship Monitoring System.
+        <div className="p-6">
+            <div className="bg-white rounded-xl shadow-md p-10 max-w-md w-full">
+                <h1 className="text-3xl font-extrabold text-emerald-700 mb-5 text-center">
+                    {dashboardText}
+                </h1>
+                <p className="text-center text-emerald-800 text-lg">
+                    Welcome <span className="font-semibold">{userInfo.username}</span>! This is your{' '}
+                    <span className="font-semibold">{dashboardText.toLowerCase()}</span> for the hostel management system.
                 </p>
             </div>
         </div>
     );
 };
-
 
 export default DashHome;
