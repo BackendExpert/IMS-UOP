@@ -58,7 +58,7 @@ const DashSide = () => {
                 <img src={uoplogo} alt="University Logo" className="h-16 w-auto drop-shadow-md" />
             </div>
             <h2 className="text-center text-sm font-extrabold text-emerald-600 tracking-widest mb-8 select-none uppercase drop-shadow-sm">
-                Hostel Management System
+                Internship Monitoring System
             </h2>
             <div className="flex items-center gap-4 bg-emerald-100 text-emerald-700 rounded-3xl p-5 shadow-inner mb-10 border border-emerald-200">
                 <img src={DashUser} alt="avatar" className="h-14 w-14 rounded-full border-2 border-emerald-400 shadow-lg" />
