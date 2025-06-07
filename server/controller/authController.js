@@ -37,10 +37,10 @@ const authController = {
                 return res.json({ Error: "User already exists in the system" })
             }
 
-            const getroleforsignup = await Role.findOne({ name: 'warden' })
+            const getroleforsignup = await Role.findOne({ name: 'intern' })
 
             if (!getroleforsignup) {
-                return res.json({ Error: "Default role 'warden' not found in system" });
+                return res.json({ Error: "Default role 'intern' not found in system" });
             }
 
             const hashpass = await bcrypt.hash(password, 10)
