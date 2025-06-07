@@ -23,9 +23,7 @@ import DashHome from './pages/DashHome/DashHome'
 import DashError from './components/Errors/DashError'
 
 
-function App() {
-    const [count, setCount] = useState(0)
-
+function App() {    
     return (
         <>
             <BrowserRouter>
