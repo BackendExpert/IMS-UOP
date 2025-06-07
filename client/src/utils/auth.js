@@ -1,14 +1,11 @@
-import secureLocalStorage from 'react-secure-storage';
 import { jwtDecode } from 'jwt-decode';
 
 export function getUserInfoFromToken() {
-    const token = secureLocalStorage.getItem('login');
-    // console.log("TOKEN FROM STORAGE:", token);
+    const token = localStorage.getItem('login');
     if (!token) return null;
 
     try {
         const decoded = jwtDecode(token);
-        // console.log("DECODED TOKEN:", decoded);
 
         const username = decoded.username || decoded.user?.username || null;
         const email = decoded.email || decoded.user?.email || null;
@@ -18,7 +15,9 @@ export function getUserInfoFromToken() {
             return null;
         }
 
-        localStorage.setItem('loginE', email)
+        // ✅ Encode email using Base64 and store it
+        const encodedEmail = btoa(email); // `btoa()` encodes to Base64
+        localStorage.setItem('loginE', encodedEmail);
 
         return { username, email, roles };
     } catch (error) {

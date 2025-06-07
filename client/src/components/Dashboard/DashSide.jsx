@@ -23,8 +23,8 @@ const DashSide = () => {
         if (roleNames.includes('supervisor')) {
             return ![2, 3, 4, 5, 6, 7, 9, 11, 13, 15, 16].includes(item.id);
         }
-        if (roleNames.includes('student')) {
-            return ![2, 3, 4, 5, 6, 7, 9, 10].includes(item.id);
+        if (roleNames.includes('intern')) {
+            return ![2, 3, 4, 5, 6, 7, 8, 10, 12, 15, 16].includes(item.id);
         }
         return false;
     });

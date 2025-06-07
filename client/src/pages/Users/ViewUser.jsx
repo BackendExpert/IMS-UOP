@@ -1,15 +1,16 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import secureLocalStorage from 'react-secure-storage'
 import DefaultBtn from '../../components/Button/DefaultBtn'
 import Dropdown from '../../components/Form/Dropdown'
 
-
 const ViewUser = () => {
     const { id } = useParams()
-    const token = secureLocalStorage.getItem('login')
-    const loginemail = secureLocalStorage.getItem('loginE')
+    const token = localStorage.getItem('login')
+    // Decode Base64 encoded email from localStorage
+    const encodedEmail = localStorage.getItem('loginE')
+    const loginemail = encodedEmail ? atob(encodedEmail) : null
+
     const [getoneuser, setgetoneuser] = useState({})
 
     useEffect(() => {
@@ -22,8 +23,7 @@ const ViewUser = () => {
                 setgetoneuser(res.data.Result);
             })
             .catch(err => console.log(err))
-    }, [])
-
+    }, [id, token])
 
     const [getuserroles, setgetuserroles] = useState([])
 
@@ -37,7 +37,7 @@ const ViewUser = () => {
                 setgetuserroles(res.data.Result);
             })
             .catch(err => console.log(err))
-    }, [])
+    }, [token])
 
     const headleVerifyuerEmail = async (userID) => {
         try {
@@ -115,7 +115,6 @@ const ViewUser = () => {
             alert("Server error.");
         }
     };
-
 
     return (
         <div className="bg-gray-100 py-10 px-4">
@@ -289,14 +288,12 @@ const ViewUser = () => {
                                 </div>
                             </div>
                         </div>
-
-
                     )
                 }
-
             </div>
         </div>
     )
 }
 
 export default ViewUser
+

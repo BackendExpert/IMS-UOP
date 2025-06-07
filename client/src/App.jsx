@@ -20,6 +20,8 @@ import Profile from './pages/Profile/Profile'
 
 import Dashboard from './components/Dashboard/Dashboard'
 import DashHome from './pages/DashHome/DashHome'
+import DashError from './components/Errors/DashError'
+
 
 function App() {
     const [count, setCount] = useState(0)
@@ -36,6 +38,7 @@ function App() {
                     <Route path='/verify-email' element={<VerifyEmail />} />
 
                     <Route path='/Dashboard/' element={<PrivateRoute element={<Dashboard />} />} >
+                        <Route path='*' element={<DashError />} />
                         <Route path='Home' element={<PrivateRoute element={<DashHome />} />} />
 
                         <Route path='Permissions' element={<PrivateRoute element={<RolePermissions />} />} />
