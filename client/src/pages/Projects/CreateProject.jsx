@@ -1,11 +1,10 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import DefaultInput from '../../components/Form/DefaultInput';
 import TextAreaInput from '../../components/Form/TextAreaInput';
 import DateInput from '../../components/Form/DateInput';
 import DefaultBtn from '../../components/Button/DefaultBtn';
-
 
 const CreateProject = () => {
     const token = localStorage.getItem('login')
@@ -46,6 +45,14 @@ const CreateProject = () => {
     return (
         <div>
             <h1 className="font-bold text-emerald-600 text-xl">Create New Project</h1>
+            <div className="-mt-4">
+                <Link to={'/Dashboard/Projects'}>
+                    <DefaultBtn
+                        type='button'
+                        label='Back'
+                    />
+                </Link>
+            </div>
 
             <div className="">
                 <form onSubmit={headleCreateProject} method="post" className='mt-8'>
