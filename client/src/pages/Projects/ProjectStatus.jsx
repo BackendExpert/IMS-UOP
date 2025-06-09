@@ -1,12 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FolderKanban, Loader2, CheckCircle2 } from 'lucide-react'
+import axios from 'axios'
 
 const ProjectStatus = () => {
+    const token = localStorage.getItem('login')
+    const [getallproject, setgetallproject] = useState([])
+
+    useEffect(() => {
+        axios.get(import.meta.env.VITE_APP_API + '/project/get-all-projects', {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        })
+            .then(res => setgetallproject(res.data.Result))
+            .catch(err => console.log(err))
+    }, [])
+
     const projectdata = [
         {
             id: 1,
             name: 'Projects',
-            value: 4,
+            value: getallproject.length,
             icon: FolderKanban,
             bgColor: 'bg-emerald-500',
         },
