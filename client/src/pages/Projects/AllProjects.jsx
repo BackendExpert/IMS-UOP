@@ -53,8 +53,8 @@ const AllProjects = () => {
                                                     <p className="text-blue-500 hover:underline">View on Github</p>
                                                 </a>
                                             </td>
-                                            <td className="px-6 py-4 font-medium text-gray-800">{project.pstartdate}</td>
-                                            <td className="px-6 py-4 font-medium text-gray-800">{project.estimatedEndDate}</td>
+                                            <td className="px-6 py-4 font-medium text-gray-800">{new Date(project.pstartdate).toLocaleDateString()}</td>
+                                            <td className="px-6 py-4 font-medium text-gray-800">{new Date(project.estimatedEndDate).toLocaleDateString()}</td>
                                             <td className="px-6 py-4">
                                                 <Link to={``} className="text-emerald-600 font-medium hover:underline">
                                                     View
