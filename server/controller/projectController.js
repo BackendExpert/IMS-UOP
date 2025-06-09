@@ -35,6 +35,17 @@ const ProjectController = {
         catch (err) {
             cosnole.log(err)
         }
+    },
+
+    getallproject: async(req, res) => {
+        try{
+            const allprojects = await Project.find()
+
+            return res.json({ Result: allprojects })
+        }
+        catch(err){
+            console.log(err)
+        }
     }
 };
 

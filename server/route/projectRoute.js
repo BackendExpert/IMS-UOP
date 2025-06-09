@@ -7,4 +7,6 @@ const router = express.Router();
 
 router.post('/create-new-project', authMiddleware, checkPermission('create-new-project'), ProjectController.createProject)
 
+router.get('/get-all-projects', authMiddleware, checkPermission('get-all-projects'), ProjectController.getallproject)
+
 module.exports = router;
