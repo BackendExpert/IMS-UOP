@@ -33,7 +33,7 @@ const ProjectController = {
             }
         }
         catch (err) {
-            cosnole.log(err)
+            console.log(err)
         }
     },
 
