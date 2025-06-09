@@ -24,6 +24,7 @@ import DashError from './components/Errors/DashError'
 import ManageProjects from './pages/Projects/ManageProjects'
 import CreateProject from './pages/Projects/CreateProject'
 import ViewOneProject from './pages/Projects/ViewOneProject'
+import ManageInterns from './pages/Interns/ManageInterns'
 
 
 function App() {    
@@ -50,6 +51,8 @@ function App() {
                         <Route path='View-user/:id' element={<PrivateRoute element={<ViewUser />} />} />
 
                         <Route path='Profile' element={<PrivateRoute element={<Profile />} />} />
+
+                        <Route path='ManageInterns' element={<PrivateRoute element={<ManageInterns /> } /> } />
 
 
                         <Route path='Projects' element={<PrivateRoute element={<ManageProjects /> } /> } />
