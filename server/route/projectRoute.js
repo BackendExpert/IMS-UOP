@@ -9,4 +9,6 @@ router.post('/create-new-project', authMiddleware, checkPermission('create-new-p
 
 router.get('/get-all-projects', authMiddleware, checkPermission('get-all-projects'), ProjectController.getallproject)
 
+router.get('/get-one-project/:id', authMiddleware, checkPermission('get-one-project'), ProjectController.getoneproject)
+
 module.exports = router;

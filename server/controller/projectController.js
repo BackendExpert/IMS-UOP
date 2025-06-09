@@ -46,6 +46,19 @@ const ProjectController = {
         catch(err){
             console.log(err)
         }
+    },
+
+    getoneproject: async(req, res) =>{
+        try{
+            const id = req.params.id
+
+            const getproject = await Project.findById(id)
+
+            return res.json({ Result: getproject })
+        }
+        catch(err){
+            console.log(err)
+        }
     }
 };
 
