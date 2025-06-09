@@ -56,7 +56,7 @@ const AllProjects = () => {
                                             <td className="px-6 py-4 font-medium text-gray-800">{new Date(project.pstartdate).toLocaleDateString()}</td>
                                             <td className="px-6 py-4 font-medium text-gray-800">{new Date(project.estimatedEndDate).toLocaleDateString()}</td>
                                             <td className="px-6 py-4">
-                                                <Link to={``} className="text-emerald-600 font-medium hover:underline">
+                                                <Link to={`/Dashboard/View-one-project/${project._id}`} className="text-emerald-600 font-medium hover:underline">
                                                     View
                                                 </Link>
                                             </td>

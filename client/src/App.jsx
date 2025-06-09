@@ -23,6 +23,7 @@ import DashHome from './pages/DashHome/DashHome'
 import DashError from './components/Errors/DashError'
 import ManageProjects from './pages/Projects/ManageProjects'
 import CreateProject from './pages/Projects/CreateProject'
+import ViewOneProject from './pages/Projects/ViewOneProject'
 
 
 function App() {    
@@ -53,6 +54,7 @@ function App() {
 
                         <Route path='Projects' element={<PrivateRoute element={<ManageProjects /> } /> } />
                         <Route path='Create-project' element={<PrivateRoute element={<CreateProject /> } /> } />
+                        <Route path='View-one-project/:id' element={<PrivateRoute element={<ViewOneProject /> } /> } />
 
                     </Route>
                 </Routes>
