@@ -32,7 +32,7 @@ const ProjectStatus = () => {
                     projectdata.map((project, index) => {
                         const Icon = project.icon
                         return (
-                            <div className={`relative ${project.bgColor} text-white p-6 rounded-2xl shadow-lg overflow-hidden hover:scale-[1.02] transition-transform duration-300`} key={index}>
+                            <div className={`relative ${project.bgColor}  text-white p-6 rounded-2xl shadow-lg overflow-hidden hover:scale-[1.02] transition-transform duration-300`} key={index}>
                                 <div className="absolute right-4 top-4 opacity-20 text-white text-6xl">
                                     <Icon className="h-14 w-14" />
                                 </div>
