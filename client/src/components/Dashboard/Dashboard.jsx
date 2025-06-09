@@ -12,14 +12,18 @@ const Dashboard = () => {
     const location = useLocation();
 
     useEffect(() => {
-        const userInfo = getUserInfoFromToken();
-        if (!userInfo) {
+        try {
+            const userInfo = getUserInfoFromToken();
+            if (!userInfo) {
+                throw new Error('Invalid or expired token');
+            }
+            setUser(userInfo);
+        } catch (err) {
+            console.error('JWT Error:', err.message);
             localStorage.clear();
             navigate('/');
-        } else {
-            setUser(userInfo);
         }
-    }, [navigate]);
+    }, [location.pathname]); // <- rerun this check on every path change
 
     const toggleSide = () => setSideOpen(prev => !prev);
 
@@ -61,22 +65,18 @@ const Dashboard = () => {
 
                 {/* Main Content */}
                 <main className="flex-1 xl:ml-84 min-h-screen flex flex-col bg-white shadow-inner rounded-tl-3xl rounded-bl-3xl overflow-hidden">
-                    {/* Top Navigation */}
                     <header className="sticky top-0 z-30 bg-white border-b border-gray-200 shadow-sm">
                         <DashNav user={user} />
                     </header>
 
-                    {/* Page Route Info */}
                     <div className="p-3 bg-emerald-50 text-emerald-700 border-b border-emerald-200 text-xs font-mono tracking-widest shadow-inner select-none">
                         <code>{location.pathname}</code>
                     </div>
 
-                    {/* Page Body */}
                     <section className="flex-grow p-6 bg-gradient-to-tr from-gray-50 to-white overflow-y-auto scrollbar-thin scrollbar-thumb-emerald-400 hover:scrollbar-thumb-emerald-600 transition-all rounded-b-3xl">
                         <Outlet />
                     </section>
 
-                    {/* Footer */}
                     <footer className="bg-white border-t border-gray-200 shadow-inner rounded-br-3xl rounded-tr-3xl">
                         <DashFooter />
                     </footer>

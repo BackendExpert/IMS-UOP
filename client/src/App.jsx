@@ -21,6 +21,9 @@ import Profile from './pages/Profile/Profile'
 import Dashboard from './components/Dashboard/Dashboard'
 import DashHome from './pages/DashHome/DashHome'
 import DashError from './components/Errors/DashError'
+import ManageProjects from './pages/Projects/ManageProjects'
+import CreateProject from './pages/Projects/CreateProject'
+import ViewOneProject from './pages/Projects/ViewOneProject'
 
 
 function App() {    
@@ -47,6 +50,11 @@ function App() {
                         <Route path='View-user/:id' element={<PrivateRoute element={<ViewUser />} />} />
 
                         <Route path='Profile' element={<PrivateRoute element={<Profile />} />} />
+
+
+                        <Route path='Projects' element={<PrivateRoute element={<ManageProjects /> } /> } />
+                        <Route path='Create-project' element={<PrivateRoute element={<CreateProject /> } /> } />
+                        <Route path='View-one-project/:id' element={<PrivateRoute element={<ViewOneProject /> } /> } />
 
                     </Route>
                 </Routes>
