@@ -22,6 +22,7 @@ import Dashboard from './components/Dashboard/Dashboard'
 import DashHome from './pages/DashHome/DashHome'
 import DashError from './components/Errors/DashError'
 import ManageProjects from './pages/Projects/ManageProjects'
+import CreateProject from './pages/Projects/CreateProject'
 
 
 function App() {    
@@ -51,7 +52,7 @@ function App() {
 
 
                         <Route path='Projects' element={<PrivateRoute element={<ManageProjects /> } /> } />
-
+                        <Route path='Create-project' element={<PrivateRoute element={<CreateProject /> } /> } />
 
                     </Route>
                 </Routes>
