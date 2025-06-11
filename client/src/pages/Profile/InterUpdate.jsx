@@ -7,8 +7,6 @@ const InterUpdate = () => {
     const token = localStorage.getItem('login')
     const [interninfor, setinterninfor] = useState({})
 
-
-
     useState(() => {
         axios.get(import.meta.env.VITE_APP_API + '/intern/get-intern-infor', {
             headers: {
@@ -45,46 +43,58 @@ const InterUpdate = () => {
                         <p className="text-red-500 uppercase font-bold text-xl">important</p>
                         <p className="text-gray-600 font-semibold">You can only update Fist time, please be true to update your real data in First Time please</p>
                     </div>
-                    <div className="grid grid-cols-3 gap-3">
+                    <div className="md:grid grid-cols-3 gap-3">
                         <InternInfor
                             title="Intern Name"
                             value={interninfor?.userID?.username || 'N/A'}
                         />
                         <InternInfor
                             title="Intern Email"
-                            value="Kamal"
+                            value={interninfor?.userID?.email || 'N/A'}
                         />
                         <InternInfor
                             title="Intern Join At"
-                            value="Kamal"
+                            value={new Date(interninfor?.joinAt).toLocaleDateString() || 'N/A'}
                         />
                         <InternInfor
                             title="Address"
-                            value="Kamal"
+                            value={interninfor?.address}
                         />
                         <InternInfor
                             title="CV"
-                            value="Kamal"
+                            value={<div>
+                                <a href={`${import.meta.env.VITE_APP_API}/uploads/${interninfor?.cv}`} target='_blank'>
+                                    <p className="text-blue-500 hover:underline">View CV</p>
+                                </a>
+                            </div>}
                         />
                         <InternInfor
                             title="Date of Birth"
-                            value="Kamal"
+                            value={new Date(interninfor?.dob).toLocaleDateString() || 'N/A'}
                         />
                         <InternInfor
                             title="Github Username"
-                            value="Kamal"
+                            value={<div>
+                                <a href={`${interninfor?.github}`} target='_blank'>
+                                    <p className="text-blue-500 hover:underline">{interninfor?.github}</p>
+                                </a>
+                            </div>}
                         />
                         <InternInfor
                             title="LinkedIn Username"
-                            value="Kamal"
+                            value={<div>
+                                <a href={`${interninfor?.linkedin}`} target='_blank'>
+                                    <p className="text-blue-500 hover:underline">{interninfor?.linkedin}</p>
+                                </a>
+                            </div>}
                         />
                         <InternInfor
                             title="Campus"
-                            value="Kamal"
+                            value={interninfor?.camups}
                         />
                         <InternInfor
                             title="Course"
-                            value="Kamal"
+                            value={interninfor?.course}
                         />
                     </div>
 

@@ -9,6 +9,18 @@ import DefaultBtn from '../../components/Button/DefaultBtn';
 const UpdateInternData = () => {
     const token = localStorage.getItem('login')
 
+    const [interninfor, setinterninfor] = useState({})
+
+    useState(() => {
+        axios.get(import.meta.env.VITE_APP_API + '/intern/get-intern-infor', {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        })
+            .then(res => setinterninfor(res.data.Result))
+            .catch(err => console.log(err))
+    }, [])
+
     const [updatedata, setupdatedata] = useState({
         address: '',
         cv: null,
@@ -91,13 +103,24 @@ const UpdateInternData = () => {
                     required
                 />
 
-                <DateInput
-                    label={'Enter Date of Birth'}
-                    name={'dob'}
-                    value={updatedata.dob}
-                    required
-                    onChange={handleInputChange}
-                />
+                {
+                    interninfor?.dob === '' ?
+                        <div className="">
+                            <DateInput
+                                label={'Enter Date of Birth'}
+                                name={'dob'}
+                                value={updatedata.dob}
+                                required
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        :
+                        <div className="">
+                                
+                        </div>
+                }
+
+
 
                 <DefaultInput
                     label={'Enter Github Username'}
