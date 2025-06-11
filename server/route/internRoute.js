@@ -12,4 +12,6 @@ router.get('/get-intern-infor', authMiddleware, checkPermission('get-intern-info
 
 router.get('/get-all-interns', authMiddleware, checkPermission('get-all-interns'), internController.GetAllInterns)
 
+router.get('/view-one-intern/:id', authMiddleware, checkPermission('view-one-intern'), internController.getoneintern)
+
 module.exports = router;

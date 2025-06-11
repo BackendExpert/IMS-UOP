@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
+
 
 const AllInterns = () => {
     const [getallinterns, setgetallinterns] = useState([])
@@ -68,6 +70,11 @@ const AllInterns = () => {
                                                             </span>
                                                         </div>
                                                 }
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                <Link to={`/Dashboard/View-intern/${intern._id}`} className="text-emerald-600 font-medium hover:underline">
+                                                    View
+                                                </Link>
                                             </td>
 
                                         </tr>
