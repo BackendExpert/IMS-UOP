@@ -87,6 +87,13 @@ const ViewIntern = () => {
                             </div>
                         </div>
 
+                        <div className="">
+                            <DefaultBtn 
+                                type='button'
+                                label='Internship Letter / Assign Supervisor and Project'
+                            />
+                        </div>
+
                     </div>
                 </div>
             </div>
