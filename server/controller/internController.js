@@ -52,6 +52,25 @@ const internController = {
         catch (err) {
             console.log(err)
         }
+    },
+
+    GetInternInfor: async (req, res) => {
+        try {
+            const token = req.header('Authorization');
+            if (!token || !token.startsWith('Bearer ')) {
+                return res.json({ Error: "Missing or invalid token" });
+            }
+
+            const decoded = jwt.verify(token.replace('Bearer ', ''), process.env.JWT_SECRET);
+            const UserID = decoded.id;
+
+            const getinterndata = await Intern.findOne({ userID: UserID })
+
+            return res.json({ Result: getinterndata })
+        }
+        catch (err) {
+            console.log(err)
+        }
     }
 };
 

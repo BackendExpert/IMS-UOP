@@ -8,4 +8,6 @@ const router = express.Router();
 
 router.post('/create-intern-infor', authMiddleware, checkPermission('create-intern-infor'), upload.single('cv'), internController.createInternInfor)
 
+router.get('/get-intern-infor', authMiddleware, checkPermission('get-intern-infor'), internController.GetInternInfor)
+
 module.exports = router;
