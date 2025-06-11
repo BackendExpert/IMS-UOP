@@ -90,7 +90,7 @@ const ViewIntern = () => {
                         <div className="">
                             <DefaultBtn 
                                 type='button'
-                                label='Internship Letter / Assign Supervisor and Project'
+                                label='Genarate Internship Letter / Assign Supervisor and Project'
                             />
                         </div>
 
