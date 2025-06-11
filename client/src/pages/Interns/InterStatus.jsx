@@ -1,30 +1,56 @@
-import React from 'react'
-import { Users, UserCheck, History } from 'lucide-react' // Valid icons
+import React, { useEffect, useState } from 'react'
+import { Users, UserCheck, History } from 'lucide-react'
+import axios from 'axios'
 
 const InterStatus = () => {
+    const [getallinterns, setgetallinterns] = useState([])
+    const [activeCount, setActiveCount] = useState(0)
+    const [pastCount, setPastCount] = useState(0)
+    const token = localStorage.getItem('login')
+
+    useEffect(() => {
+        axios.get(import.meta.env.VITE_APP_API + '/intern/get-all-interns', {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        })
+            .then(res => {
+                const interns = res.data.Result || []
+                setgetallinterns(interns)
+
+                const active = interns.filter(intern => intern.isOneIntern === true).length
+                const past = interns.filter(intern => intern.isOneIntern === false).length
+
+                setActiveCount(active)
+                setPastCount(past)
+            })
+            .catch(err => console.log(err))
+    }, [])
+
     const interndata = [
         {
             id: 1,
             name: 'Total Interns',
-            value: 44,
-            icon: Users, // Group of people
+            value: getallinterns.length,
+            icon: Users,
             bgColor: 'bg-emerald-500',
         },
         {
             id: 2,
             name: 'Active Interns',
-            value: 4,
-            icon: UserCheck, // Active status
+            value: activeCount,
+            icon: UserCheck,
             bgColor: 'bg-teal-500',
         },
         {
             id: 3,
             name: 'Past Interns',
-            value: 4,
-            icon: History, // Indicates history/past
+            value: pastCount,
+            icon: History,
             bgColor: 'bg-cyan-500',
         },
     ]
+
     return (
         <div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 my-6">
