@@ -5,7 +5,8 @@ import UpdateInternData from './UpdateInternData'
 
 const InterUpdate = () => {
     const token = localStorage.getItem('login')
-    const [interninfor, setinterninfor] = useState([])
+    const [interninfor, setinterninfor] = useState({})
+
 
 
     useState(() => {
@@ -47,7 +48,7 @@ const InterUpdate = () => {
                     <div className="grid grid-cols-3 gap-3">
                         <InternInfor
                             title="Intern Name"
-                            value="Kamal"
+                            value={interninfor?.userID?.username || 'N/A'}
                         />
                         <InternInfor
                             title="Intern Email"

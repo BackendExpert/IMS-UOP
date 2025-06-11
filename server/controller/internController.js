@@ -64,7 +64,7 @@ const internController = {
             const decoded = jwt.verify(token.replace('Bearer ', ''), process.env.JWT_SECRET);
             const UserID = decoded.id;
 
-            const getinterndata = await Intern.findOne({ userID: UserID })
+            const getinterndata = await Intern.findOne({ userID: UserID }).populate('userID')
 
             return res.json({ Result: getinterndata })
         }
