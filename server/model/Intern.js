@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const InternSchema = new mongoose.Schema({
     userID: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Role'
+        ref: 'User'
     },
 
     joinAt: {
@@ -25,7 +25,7 @@ const InternSchema = new mongoose.Schema({
     camups: { type: String, required: true },
     course: { type: String, required: true },
     isApprove: { type: Boolean, required: true, default: false },
-    isOneIntern: { type: Boolean, required: true, default: false },
+    isOneIntern: { type: Boolean, required: true, default: true },
 }, { timestamps: true });
 
 const Intern = mongoose.model('Intern', InternSchema);
