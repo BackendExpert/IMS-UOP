@@ -5,18 +5,18 @@ import UpdateInternData from './UpdateInternData'
 
 const InterUpdate = () => {
     const token = localStorage.getItem('login')
-    const [interninfor, setinterninfor] = useState([])
+    // const [interninfor, setinterninfor] = useState([])
 
 
-    useState(() => {
-        axios.get(import.meta.env.VITE_APP_API + '/intern/get-infor', {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-            },
-        })
-            .then(res => setinterninfor(res.data.Result))
-            .catch(err => console.log(err))
-    }, [])
+    // useState(() => {
+    //     axios.get(import.meta.env.VITE_APP_API + '/intern/get-infor', {
+    //         headers: {
+    //             'Authorization': `Bearer ${token}`,
+    //         },
+    //     })
+    //         .then(res => setinterninfor(res.data.Result))
+    //         .catch(err => console.log(err))
+    // }, [])
 
     const [isEdit, setisEdit] = useState(false)
 

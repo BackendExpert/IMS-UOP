@@ -1,4 +1,5 @@
 const Intern = require('../model/Intern')
+const jwt = require('jsonwebtoken')
 
 const internController = {
     createInternInfor: async (req, res) => {
@@ -20,9 +21,15 @@ const internController = {
                 course,
             } = req.body
 
-            const cv = req.path
+            const cvFile = req.file;
+            if (!cvFile) {
+                return res.json({ Error: "CV file is required" });
+            }
+
+            // console.log(req.body, cvFile);
 
             const newIntern = new Intern({
+                cv: cvFile.filename,
                 userID: UserID,
                 address: address,
                 dob: dob,
@@ -34,11 +41,11 @@ const internController = {
 
             const newResultInter = await newIntern.save()
 
-            if(newResultInter){
-                res.json({ Status: "Success", Message: 'Intern Information Created Sccuess'})
+            if (newResultInter) {
+                res.json({ Status: "Success", Message: 'Intern Information Created Sccuess' })
             }
-            else{
-                res.json({ Error: "Internal Server Error While Creating Intern Informaiton"})
+            else {
+                res.json({ Error: "Internal Server Error While Creating Intern Informaiton" })
             }
 
         }

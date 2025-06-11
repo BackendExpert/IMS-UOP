@@ -20,7 +20,8 @@ const UpdateInternData = () => {
     })
 
     const handleInputChange = (e) => {
-        setupdatedata({ email: e.target.value });
+        const { name, value } = e.target;
+        setupdatedata((prev) => ({ ...prev, [name]: value }));
     };
 
     const handleFileChange = (e) => {
@@ -35,24 +36,37 @@ const UpdateInternData = () => {
     const headleCreateInternInformation = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(import.meta.env.VITE_APP_API + '/intern/create-intern-infor', updatedata, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
-            })
+            const formData = new FormData();
+            formData.append('address', updatedata.address);
+            formData.append('cv', updatedata.cv);
+            formData.append('dob', updatedata.dob);
+            formData.append('github', updatedata.github);
+            formData.append('linkedin', updatedata.linkedin);
+            formData.append('campus', updatedata.campus);
+            formData.append('course', updatedata.course);
+
+            const res = await axios.post(
+                import.meta.env.VITE_APP_API + '/intern/create-intern-infor',
+                formData,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'multipart/form-data'
+                    },
+                }
+            );
 
             if (res.data.Status === "Success") {
-                alert(res.data.Message)
-                window.location.reload()
+                alert(res.data.Message);
+                window.location.reload();
+            } else {
+                alert(res.data.Error);
             }
-            else {
-                alert(res.data.Error)
-            }
+        } catch (err) {
+            console.log(err);
         }
-        catch (err) {
-            console.log(err)
-        }
-    }
+    };
+
 
 
 
@@ -96,8 +110,8 @@ const UpdateInternData = () => {
 
                 <DefaultInput
                     label={'Enter Linkedin Username'}
-                    name={'github'}
-                    value={updatedata.github}
+                    name={'linkedin'}
+                    value={updatedata.linkedin}
                     placeholder={'linkedin.com/username'}
                     required
                     onChange={handleInputChange}
@@ -122,7 +136,7 @@ const UpdateInternData = () => {
                 />
 
                 <div className="-mt-2">
-                    <DefaultBtn 
+                    <DefaultBtn
                         type='submit'
                         label='Create Intern Information'
                     />

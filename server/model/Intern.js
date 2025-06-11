@@ -14,7 +14,6 @@ const InternSchema = new mongoose.Schema({
 
     InternshipEndAt: {
         type: Date,
-        required: true
     },
 
     address: { type: String, required: true },
