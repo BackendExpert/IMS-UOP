@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import DefaultBtn from '../../components/Button/DefaultBtn'
+import UpdateInternData from './UpdateInternData'
 
 const InterUpdate = () => {
     const token = localStorage.getItem('login')
@@ -32,13 +33,17 @@ const InterUpdate = () => {
                     <div className="-mt-4">
                         <DefaultBtn
                             type='button'
-                            label={isEdit ? 'Close' : 'Edit'}
+                            label={isEdit ? 'Close' : 'Create My Information'}
                             onClick={headleEdit}
                         />
                     </div>
                 </div>
 
                 <div>
+                    <div className="mb-4 ">
+                        <p className="text-red-500 uppercase font-bold text-xl">important</p>
+                        <p className="text-gray-600 font-semibold">You can only update Fist time, please be true to update your real data in First Time please</p>
+                    </div>
                     <div className="grid grid-cols-3 gap-3">
                         <InternInfor
                             title="Intern Name"
@@ -91,7 +96,7 @@ const InterUpdate = () => {
                 {
                     isEdit === true ?
                         <div className="max-w-4xl bg-white mx-auto p-4 rounded-lg shadow-xl mt-4">
-                            <h1 className="text-sm font-bold text-emerald-600 mb-8 mt-2">Update My Profile</h1>
+                            <UpdateInternData />
                         </div>
                         :
                         <div className="">

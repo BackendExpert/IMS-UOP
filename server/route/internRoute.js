@@ -6,8 +6,6 @@ const upload = require('../middlewares/UploadMiddleware');
 
 const router = express.Router();
 
-// router.get('/get-infor', authMiddleware, checkPermission('view-my-infor-intern'), internController.viewInternInfor)
-
-// router.post('/update-infor', authMiddleware, checkPermission('update-my-infor-intern'), upload.single('cv'), internController.updateInternInfor)
+router.post('/create-intern-infor', authMiddleware, checkPermission('create-intern-infor'), upload.single('cv'), internController.createInternInfor)
 
 module.exports = router;
