@@ -10,4 +10,6 @@ router.post('/create-intern-infor', authMiddleware, checkPermission('create-inte
 
 router.get('/get-intern-infor', authMiddleware, checkPermission('get-intern-infor'), internController.GetInternInfor)
 
+router.get('/get-all-interns', authMiddleware, checkPermission('get-all-interns'), internController.GetAllInterns)
+
 module.exports = router;

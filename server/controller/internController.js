@@ -71,6 +71,17 @@ const internController = {
         catch (err) {
             console.log(err)
         }
+    },
+
+    GetAllInterns: async(req, res) => {
+        try{
+            const getallinters = await Intern.find().populate('userID')
+
+            return res.json({ Result: getallinters })
+        }
+        catch(err){
+            console.log(err)
+        }
     }
 };
 
