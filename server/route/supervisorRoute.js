@@ -7,6 +7,6 @@ const router = express.Router();
 
 router.get('/get-supervisor-to-assign', authMiddleware, checkPermission('get-supervisor-to-assign'), supervisorController.getAllSupervisors)
 
-// router.post('/intern-assign-supervisor/:id', authMiddleware, checkPermission('intern-assign-supervisor'), supervisorController.assignInternstoSP)
+router.post('/assign-supervisor-project/:id', authMiddleware, checkPermission('assign-supervisor-project'), supervisorController.assignSupervisorToProject)
 
 module.exports = router;

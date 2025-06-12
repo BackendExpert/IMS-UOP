@@ -91,7 +91,7 @@ const internController = {
 
             const internbyID = await Intern.findById(id).populate('userID')
 
-            const getProjectData = await ProjectAssign.find({ intern: id }).populate('project')
+            const getProjectData = await ProjectAssign.find({ intern: id }).populate('project').populate('suprvisor')
 
             // console.log(getProjectData)
 

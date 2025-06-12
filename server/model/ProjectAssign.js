@@ -7,7 +7,7 @@ const ProjectAssignSchema = new mongoose.Schema({
     },
     intern: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'Intern'
     }],
     project: {
         type: mongoose.Schema.Types.ObjectId,

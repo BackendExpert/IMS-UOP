@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import DefaultBtn from '../../components/Button/DefaultBtn'
 import ProjectSp from './ProjectSp'
+import ReqeustLetter from './ReqeustLetter'
 
 const ViewIntern = () => {
     const { id } = useParams()
@@ -26,6 +27,11 @@ const ViewIntern = () => {
         setopenproject(!openproject)
     }
 
+    const [letterBtn, setletterbtn] = useState(false)
+
+    const headleBtnLetter = () => {
+        setletterbtn(!letterBtn)
+    }
 
     return (
         <div>
@@ -92,7 +98,7 @@ const ViewIntern = () => {
                             <div className="w-full">
                                 <div className="">
                                     <h1 className="font-bold text-emerald-600">Supervisor of Internship</h1>
-                                    <p className="py-4">-</p>
+                                    <p className="py-4">{getoneintern?.getProjectData?.[0]?.suprvisor?.username || "Not assigned"}</p>
                                 </div>
                                 <div className="">
                                     <h1 className="font-bold text-emerald-600">Assigned Projects</h1>
@@ -113,9 +119,17 @@ const ViewIntern = () => {
                         <div className="">
                             <DefaultBtn
                                 type='button'
-                                label='Genarate Internship Letter / Assign Supervisor and Project'
+                                label='Assign Supervisor and Project'
                                 onClick={headleBtnClick}
                             />
+
+                            <div className="">
+                                <DefaultBtn
+                                    type='button'
+                                    label='Genarate Internship Letter'
+                                    onClick={headleBtnLetter}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -130,7 +144,16 @@ const ViewIntern = () => {
                         :
                         <div className=""></div>
                 }
-
+            </div>
+            <div className="">
+                {
+                    letterBtn ?
+                        <div className="bg-white p-8 rounded-lg shadow-lg mt-8">
+                            <ReqeustLetter internID={id} />
+                        </div>
+                        :
+                        <div className=""></div>
+                }
             </div>
         </div>
     )
