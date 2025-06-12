@@ -16,6 +16,31 @@ const supervisorController = {
         }
     },
 
+    assignSupervisorToProject: async(req, res) => {
+        try{
+            const projectID = req.params.id
+
+            const { supervisor } = req.body
+
+            const newProject = new ProjectAssign({
+                supervisor: supervisor,
+                project: projectID
+            })
+
+            const resultAssignSp = await newProject.save()
+
+            if(resultAssignSp){
+                return res.json({ Status: "Success", Message: "Supervisor Assign to Project Success"})
+            }
+            else{
+                return res.json({ Error: "Internal Server Error"})
+            }
+        }
+        catch(err){
+            console.log(err)
+        }
+    }
+
 
 };
 
