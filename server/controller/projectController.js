@@ -51,16 +51,28 @@ const ProjectController = {
 
     getoneproject: async (req, res) => {
         try {
-            const id = req.params.id
+            const id = req.params.id;
 
-            const getproject = await Project.findById(id)
+            const getproject = await Project.findById(id);
 
-            return res.json({ Result: getproject })
-        }
-        catch (err) {
-            console.log(err)
+            const getprojectassigns = await ProjectAssign.findOne({ project: id })
+                .populate({
+                    path: 'intern',
+                    populate: {
+                        path: 'userID',
+                        model: 'User'
+                    }
+                })
+                .populate('suprvisor');
+
+            console.log(getprojectassigns);
+
+            return res.json({ Result: { getproject, getprojectassigns } });
+        } catch (err) {
+            console.log(err);
         }
     },
+
 
     assignInterntoProject: async (req, res) => {
         try {
@@ -83,7 +95,7 @@ const ProjectController = {
                 await assignment.save();
             }
 
-            return res.json({ Status: "Success", Message: "The Intern Assign to Project Success"})
+            return res.json({ Status: "Success", Message: "The Intern Assign to Project Success" })
 
         }
         catch (err) {
