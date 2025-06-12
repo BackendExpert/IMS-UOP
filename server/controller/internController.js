@@ -93,7 +93,7 @@ const internController = {
 
             const getProjectData = await ProjectAssign.find({ intern: id }).populate('project')
 
-            console.log(getProjectData)
+            // console.log(getProjectData)
 
             return res.json({ Result: { internbyID, getProjectData } });
         }
