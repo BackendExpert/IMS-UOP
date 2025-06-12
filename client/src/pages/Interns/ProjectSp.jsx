@@ -48,11 +48,11 @@ const ProjectSp = ({ internID }) => {
                     'Authorization': `Bearer ${token}`,
                 },
             })
-            if(res.data.Status === "Success"){
+            if (res.data.Status === "Success") {
                 alert(res.data.Message)
                 window.location.reload()
             }
-            else{
+            else {
                 alert(res.data.Error)
             }
         }
@@ -61,6 +61,22 @@ const ProjectSp = ({ internID }) => {
         }
     }
 
+    const [spassingn, setspassingn] = useState({
+        supervisor: '',
+    })
+
+    const handleInputChangeSP = (e) => {
+        setspassingn({ supervisor: e.target.value });
+    };
+
+    const headleSPAssign = (e) => {
+        try {
+
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
 
 
     return (
@@ -68,6 +84,24 @@ const ProjectSp = ({ internID }) => {
             <div className="md:flex">
                 <div className="w-full mr-2">
                     <h1 className="font-bold text-emerald-600">Assign to Supervisor</h1>
+                    <form onSubmit={headleSPAssign} method="post">
+                        <DropDown
+                            label={"Select Supervisor"}
+                            name="supervisor"
+                            onChange={handleInputChangeSP}
+                            options={assignSp.map((data) => ({
+                                value: data._id,
+                                label: data.username
+                            }))}
+                        />
+
+                        <div className="-mt-4">
+                            <DefaultBtn
+                                type='submit'
+                                label='Assign Supervisor'
+                            />
+                        </div>
+                    </form>
                 </div>
                 <div className="w-full ml-2">
                     <h1 className="font-bold text-emerald-600">Assign to Projects</h1>
