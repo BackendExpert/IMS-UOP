@@ -1,7 +1,8 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import UpdateProject from './UpdateProject'
+import AssignSp from './AssignSp'
+import DefaultBtn from '../../components/Button/DefaultBtn'
 
 const ViewOneProject = () => {
     const { id } = useParams()
@@ -18,6 +19,12 @@ const ViewOneProject = () => {
             .then(res => setprojectdata(res.data.Result))
             .catch(err => console.log(err))
     }, [])
+
+    const [spassign, setspassign] = useState(false)
+
+    const headleAssingSp = () => {
+        setspassign(!spassign)
+    }
 
     return (
         <div>
@@ -49,15 +56,28 @@ const ViewOneProject = () => {
                             <p className="w-40 font-medium text-gray-600">Project Description:</p>
                             <p className="text-emerald-800">{projectdata?.pdescription}</p>
                         </div>
+
+                        <div className="">
+                            <DefaultBtn
+                                type='button'
+                                label='Assign Supervisor'
+                                onClick={headleAssingSp}
+                            />
+                        </div>
                     </div>
                 </div>
 
-                <div className="">
-                    <div className="mt-8 bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
-                        <UpdateProject projectID={id} />
-                    </div>
+                {
+                    spassign ?
+                        <div className="">
+                            <div className="mt-8 bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
+                                <AssignSp projectID={id} />
+                            </div>
+                        </div>
+                        :
+                        <div className=""></div>
+                }
 
-                </div>
             </div>
 
 
