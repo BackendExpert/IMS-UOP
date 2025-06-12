@@ -1,3 +1,4 @@
+const ProjectAssign = require("../model/ProjectAssign");
 const Role = require("../model/Role");
 const User = require("../model/User");
 
@@ -15,7 +16,6 @@ const supervisorController = {
         }
     },
 
-    
 };
 
 module.exports = supervisorController;
