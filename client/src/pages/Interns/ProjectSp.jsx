@@ -69,9 +69,20 @@ const ProjectSp = ({ internID }) => {
         setspassingn({ supervisor: e.target.value });
     };
 
-    const headleSPAssign = (e) => {
+    const headleSPAssign = async (e) => {
         try {
-
+            const res = await axios.post(import.meta.env.VITE_APP_API + '/supervisor/intern-assign-supervisor/' + internID, spassingn, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            })
+            if (res.data.Status === "Success") {
+                alert(res.data.Message)
+                window.location.reload()
+            }
+            else {
+                alert(res.data.Error)
+            }
         }
         catch (err) {
             console.log(err)

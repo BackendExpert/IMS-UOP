@@ -13,7 +13,9 @@ const supervisorController = {
         catch (err) {
             console.log(err)
         }
-    }
+    },
+
+    
 };
 
 module.exports = supervisorController;
