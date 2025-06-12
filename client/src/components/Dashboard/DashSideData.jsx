@@ -39,12 +39,6 @@ const dashsidedata = [
         link: '/Dashboard/Letters',
         icon: FaEnvelopeOpenText
     },
-    {
-        id: 7,
-        name: 'Letter Approvals',
-        link: '/Dashboard/LetterApprovals',
-        icon: FaClipboardList
-    },
 
     // supervisor
     {
