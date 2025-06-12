@@ -4,6 +4,7 @@ import DefaultInput from '../../components/Form/DefaultInput';
 import DefaultBtn from '../../components/Button/DefaultBtn';
 import DashUser from '../../assets/DashUser.png'
 import axios from 'axios';
+import InterUpdate from './InterUpdate';
 
 const Profile = () => {
     const [btnClick, setBtnClick] = useState(false);
@@ -43,12 +44,12 @@ const Profile = () => {
                     'Authorization': `Bearer ${token}`,
                 },
             })
-            if(res.data.Status === "Success"){
+            if (res.data.Status === "Success") {
                 alert(res.data.Message)
                 localStorage.clear()
                 window.location.reload()
             }
-            else{
+            else {
                 alert(res.data.Error)
             }
         }
@@ -133,6 +134,13 @@ const Profile = () => {
                     </form>
                 </div>
             )}
+
+            {mydata.roles?.some(role => (typeof role === 'string' ? role === 'intern' : role.name === 'intern')) && (
+                <div className="mt-8">
+                    <InterUpdate />
+                </div>
+            )}
+
         </div>
     );
 };
