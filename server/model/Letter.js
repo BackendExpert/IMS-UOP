@@ -28,6 +28,9 @@ const LetterSchema = new mongoose.Schema({
     endData: {
         type: Date,
         required: true,
+    },
+    file: {
+        type: String,
     }
 }, { timestamps: true });
 
