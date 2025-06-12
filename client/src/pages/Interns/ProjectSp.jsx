@@ -6,17 +6,17 @@ import DefaultBtn from '../../components/Button/DefaultBtn'
 const ProjectSp = ({ internID }) => {
     const token = localStorage.getItem('login')
 
-    // const [assignSp, setassignSp] = useState([])
+    const [assignSp, setassignSp] = useState([])
 
-    // useEffect(() => {
-    //     axios.get(import.meta.env.VITE_APP_API + '/supervisor/get-supervisor-to-assign', {
-    //         headers: {
-    //             'Authorization': `Bearer ${token}`,
-    //         },
-    //     })
-    //         .then(res => setassignSp(res.data.Result))
-    //         .catch(err => console.log(err))
-    // }, [])
+    useEffect(() => {
+        axios.get(import.meta.env.VITE_APP_API + '/supervisor/get-supervisor-to-assign', {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        })
+            .then(res => setassignSp(res.data.Result))
+            .catch(err => console.log(err))
+    }, [])
 
     const [projects, setprojects] = useState([])
 
