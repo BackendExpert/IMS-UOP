@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import DefaultBtn from '../../components/Button/DefaultBtn'
+import ProjectSp from './ProjectSp'
 
 const ViewIntern = () => {
     const { id } = useParams()
@@ -18,6 +19,12 @@ const ViewIntern = () => {
             .then(res => setgetoneintern(res.data.Result))
             .catch(err => console.log(err))
     }, [])
+
+    const [openproject, setopenproject] = useState(false)
+
+    const headleBtnClick = () => {
+        setopenproject(!openproject)
+    }
 
 
     return (
@@ -88,14 +95,26 @@ const ViewIntern = () => {
                         </div>
 
                         <div className="">
-                            <DefaultBtn 
+                            <DefaultBtn
                                 type='button'
                                 label='Genarate Internship Letter / Assign Supervisor and Project'
+                                onClick={headleBtnClick}
                             />
                         </div>
-
                     </div>
                 </div>
+            </div>
+
+            <div className="">
+                {
+                    openproject ?
+                        <div className="bg-white p-8 rounded-lg shadow-lg mt-8">
+                            <ProjectSp internID={id} />
+                        </div>
+                        :
+                        <div className=""></div>
+                }
+
             </div>
         </div>
     )
