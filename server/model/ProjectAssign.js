@@ -4,7 +4,6 @@ const ProjectAssignSchema = new mongoose.Schema({
     suprvisor: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required: true
     },
     intern: [{
         type: mongoose.Schema.Types.ObjectId,

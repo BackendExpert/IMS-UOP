@@ -1,5 +1,6 @@
 const Intern = require('../model/Intern')
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const ProjectAssign = require('../model/ProjectAssign');
 
 const internController = {
     createInternInfor: async (req, res) => {
@@ -73,26 +74,30 @@ const internController = {
         }
     },
 
-    GetAllInterns: async(req, res) => {
-        try{
+    GetAllInterns: async (req, res) => {
+        try {
             const getallinters = await Intern.find().populate('userID')
 
             return res.json({ Result: getallinters })
         }
-        catch(err){
+        catch (err) {
             console.log(err)
         }
     },
 
-    getoneintern: async(req, res) => {
-        try{
+    getoneintern: async (req, res) => {
+        try {
             const id = req.params.id
 
             const internbyID = await Intern.findById(id).populate('userID')
 
-            return res.json({ Result: internbyID })
+            const getProjectData = await ProjectAssign.find({ intern: id }).populate('project')
+
+            console.log(getProjectData)
+
+            return res.json({ Result: { internbyID, getProjectData } });
         }
-        catch(err){
+        catch (err) {
             console.log(err)
         }
     }

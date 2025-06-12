@@ -42,46 +42,53 @@ const ViewIntern = () => {
 
                     <div className="mt-8">
                         <div className="md:flex">
-                            <table className='w-full'>
-                                <tr className='h-12 border-b border-gray-100'>
-                                    <td className='text-gray-700 font-semibold'>Intern Username</td>
-                                    <td>{getoneintern?.userID?.username}</td>
-                                </tr>
-                                <tr className='h-12 border-b border-gray-100'>
-                                    <td className='text-gray-700 font-semibold'>Intern Join At</td>
-                                    <td>{new Date(getoneintern?.joinAt).toLocaleDateString()}</td>
-                                </tr>
-                                <tr className='h-12 border-b border-gray-100'>
-                                    <td className='text-gray-700 font-semibold'>Internship End At</td>
-                                    <td className="">
-                                        {getoneintern?.InternshipEndAt ? new Date(getoneintern?.InternshipEndAt).toLocaleDateString() : '-'}
-                                    </td>
-                                </tr>
-                                <tr className='h-12 border-b border-gray-100'>
-                                    <td className='text-gray-700 font-semibold'>Github Account</td>
-                                    <td>
-                                        <a href={getoneintern.github} target='_blank'>
-                                            <p className="text-blue-600 hover:underline">{getoneintern.github}</p>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr className='h-12 border-b border-gray-100'>
-                                    <td className='text-gray-700 font-semibold'>Linkedin Account</td>
-                                    <td>
-                                        <a href={getoneintern.linkedin} target='_blank'>
-                                            <p className="text-blue-600 hover:underline">{getoneintern.linkedin}</p>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr className='h-12 border-b border-gray-100'>
-                                    <td className='text-gray-700 font-semibold'>Campus</td>
-                                    <td>{getoneintern.camups}</td>
-                                </tr>
-                                <tr className='h-12 border-b border-gray-100'>
-                                    <td className='text-gray-700 font-semibold'>Course Account</td>
-                                    <td>{getoneintern.course}</td>
-                                </tr>
-                            </table>
+                            {getoneintern && (
+                                <table className='w-full'>
+                                    <tbody>
+                                        <tr className='h-12 border-b border-gray-100'>
+                                            <td className='text-gray-700 font-semibold'>Intern Username</td>
+                                            <td>{getoneintern?.internbyID?.userID?.username}</td>
+                                        </tr>
+                                        <tr className='h-12 border-b border-gray-100'>
+                                            <td className='text-gray-700 font-semibold'>Intern Join At</td>
+                                            <td>{new Date(getoneintern?.internbyID?.joinAt).toLocaleDateString()}</td>
+                                        </tr>
+                                        <tr className='h-12 border-b border-gray-100'>
+                                            <td className='text-gray-700 font-semibold'>Internship End At</td>
+                                            <td>
+                                                {getoneintern?.internbyID?.InternshipEndAt
+                                                    ? new Date(getoneintern.internbyID.InternshipEndAt).toLocaleDateString()
+                                                    : '-'}
+                                            </td>
+                                        </tr>
+                                        <tr className='h-12 border-b border-gray-100'>
+                                            <td className='text-gray-700 font-semibold'>Github Account</td>
+                                            <td>
+                                                <a href={getoneintern?.internbyID?.github} target='_blank'>
+                                                    <p className="text-blue-600 hover:underline">{getoneintern?.internbyID?.github}</p>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr className='h-12 border-b border-gray-100'>
+                                            <td className='text-gray-700 font-semibold'>Linkedin Account</td>
+                                            <td>
+                                                <a href={getoneintern?.internbyID?.linkedin} target='_blank'>
+                                                    <p className="text-blue-600 hover:underline">{getoneintern?.internbyID?.linkedin}</p>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr className='h-12 border-b border-gray-100'>
+                                            <td className='text-gray-700 font-semibold'>Campus</td>
+                                            <td>{getoneintern?.internbyID?.camups}</td>
+                                        </tr>
+                                        <tr className='h-12 border-b border-gray-100'>
+                                            <td className='text-gray-700 font-semibold'>Course</td>
+                                            <td>{getoneintern?.internbyID?.course}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            )}
+
                             <div className="w-full">
                                 <div className="">
                                     <h1 className="font-bold text-emerald-600">Supervisor of Internship</h1>
@@ -89,8 +96,17 @@ const ViewIntern = () => {
                                 </div>
                                 <div className="">
                                     <h1 className="font-bold text-emerald-600">Assigned Projects</h1>
-                                    <p className="py-4">-</p>
+                                    {getoneintern?.getProjectData?.length > 0 ? (
+                                        <ul className="py-4 list-disc list-inside">
+                                            {getoneintern.getProjectData.map((item, idx) => (
+                                                <li key={idx}>{item.project?.pname || 'Unnamed Project'}</li>
+                                            ))}
+                                        </ul>
+                                    ) : (
+                                        <p className="py-4">-</p>
+                                    )}
                                 </div>
+
                             </div>
                         </div>
 
