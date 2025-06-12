@@ -119,14 +119,14 @@ const ViewIntern = () => {
                         <div className="">
                             <DefaultBtn
                                 type='button'
-                                label='Assign Supervisor and Project'
+                                label={!openproject ? 'Assign Supervisor and Project' : 'Close'}
                                 onClick={headleBtnClick}
                             />
 
                             <div className="">
                                 <DefaultBtn
                                     type='button'
-                                    label='Genarate Internship Letter'
+                                    label={!letterBtn ? 'Genarate Internship Letter' : 'Close'}
                                     onClick={headleBtnLetter}
                                 />
                             </div>
