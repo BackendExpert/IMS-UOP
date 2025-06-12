@@ -11,4 +11,6 @@ router.get('/get-all-projects', authMiddleware, checkPermission('get-all-project
 
 router.get('/get-one-project/:id', authMiddleware, checkPermission('get-one-project'), ProjectController.getoneproject)
 
+router.get('/get-projects-to-assign', authMiddleware, checkPermission('get-projects-to-assign'), ProjectController.getallproject)
+
 module.exports = router;
