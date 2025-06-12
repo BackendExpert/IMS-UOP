@@ -92,7 +92,7 @@ const ViewIntern = () => {
                             <div className="w-full">
                                 <div className="">
                                     <h1 className="font-bold text-emerald-600">Supervisor of Internship</h1>
-                                    <p className="py-4">-</p>
+                                    <p className="py-4">{getoneintern?.getProjectData?.[0]?.suprvisor?.username || "Not assigned"}</p>
                                 </div>
                                 <div className="">
                                     <h1 className="font-bold text-emerald-600">Assigned Projects</h1>

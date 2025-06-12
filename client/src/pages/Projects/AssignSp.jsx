@@ -27,7 +27,7 @@ const AssignSp = ({ projectID }) => {
         setspassign({ supervisor: e.target.value });
     };
 
-    const headleProjectAssign = async (e) => {
+    const headleProjectAssignSP = async (e) => {
         e.preventDefault();
         try {
 
@@ -56,7 +56,7 @@ const AssignSp = ({ projectID }) => {
                     Assign Supervisor to Project
                 </h1>
 
-                <form onSubmit={headleProjectAssign} method="post">
+                <form onSubmit={headleProjectAssignSP} method="post">
                     <Dropdown
                         label={"Select Supervisor"}
                         name="supervisor"
@@ -70,7 +70,7 @@ const AssignSp = ({ projectID }) => {
                     <div className="-mt-4">
                         <DefaultBtn
                             type='submit'
-                            label='Assign Project'
+                            label='Assign Supervisor'
                         />
                     </div>
                 </form>

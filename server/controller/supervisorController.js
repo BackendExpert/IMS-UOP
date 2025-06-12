@@ -16,27 +16,31 @@ const supervisorController = {
         }
     },
 
-    assignSupervisorToProject: async(req, res) => {
-        try{
-            const projectID = req.params.id
+    assignSupervisorToProject: async (req, res) => {
+        try {
+            const projectID = req.params.id;
+            const { supervisor } = req.body;
 
-            const { supervisor } = req.body
+            const existingAssignment = await ProjectAssign.findOne({ project: projectID });
 
-            const newProject = new ProjectAssign({
-                supervisor: supervisor,
-                project: projectID
-            })
-
-            const resultAssignSp = await newProject.save()
-
-            if(resultAssignSp){
-                return res.json({ Status: "Success", Message: "Supervisor Assign to Project Success"})
+            if (existingAssignment) {
+                return res.json({ Error: "Project already assigned to a supervisor" });
             }
-            else{
-                return res.json({ Error: "Internal Server Error"})
+
+            const newAssignment = new ProjectAssign({
+                suprvisor: supervisor,
+                project: projectID
+            });
+
+            const resultAssignSp = await newAssignment.save();
+
+            if (resultAssignSp) {
+                return res.json({ Status: "Success", Message: "Supervisor assigned to project successfully" });
+            } else {
+                return res.json({ Error: "Failed to assign supervisor to project" });
             }
         }
-        catch(err){
+        catch (err) {
             console.log(err)
         }
     }
