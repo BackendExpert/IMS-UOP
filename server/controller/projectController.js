@@ -65,7 +65,7 @@ const ProjectController = {
                 })
                 .populate('suprvisor');
 
-            console.log(getprojectassigns);
+            // console.log(getprojectassigns);
 
             return res.json({ Result: { getproject, getprojectassigns } });
         } catch (err) {
