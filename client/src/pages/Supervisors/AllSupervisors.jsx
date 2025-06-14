@@ -27,6 +27,7 @@ const AllSupervisors = () => {
                             <tr>
                                 <th scope="col" className="px-6 py-4 font-semibold tracking-wider">#</th>
                                 <th scope="col" className="px-6 py-4 font-semibold tracking-wider">Supervisor</th>
+                                <th scope="col" className="px-6 py-4 font-semibold tracking-wider">Email</th>
                                 <th scope="col" className="px-6 py-4 font-semibold tracking-wider">Join at</th>
                                 <th scope="col" className="px-6 py-4 font-semibold tracking-wider">Supervised Projects</th>
                                 <th scope="col" className="px-6 py-4 font-semibold tracking-wider">Projects</th>
@@ -38,6 +39,7 @@ const AllSupervisors = () => {
                                     <td className="px-6 py-4 text-gray-800 font-medium">{index + 1}</td>
                                     <td className="px-6 py-4 text-gray-800">{entry.supervisor.username}</td>
                                     <td className="px-6 py-4 text-gray-800">{entry.supervisor.email}</td>
+                                    <td className="px-6 py-4 text-gray-800">{new Date(entry.supervisor.createdAt).toLocaleDateString()}</td>
                                     <td className="px-6 py-4 text-gray-800">{entry.projects.length}</td>
                                     <td className="px-6 py-4 text-gray-800">
                                         {entry.projects.map((p, i) => (
