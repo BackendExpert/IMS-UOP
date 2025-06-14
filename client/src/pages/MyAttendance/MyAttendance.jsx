@@ -1,5 +1,6 @@
 import React from 'react'
 import CreateAttendance from './CreateAttendance'
+import AllMyAttendance from './AllMyAttendance'
 
 const MyAttendance = () => {
     return (
@@ -10,6 +11,10 @@ const MyAttendance = () => {
 
             <div className="">
                 <CreateAttendance />
+            </div>
+
+            <div className="">
+                <AllMyAttendance />
             </div>
         </div>
     )
