@@ -11,6 +11,9 @@ const AllAttendance = () => {
     const [usernameFilter, setUsernameFilter] = useState('')
     const [dateFilter, setDateFilter] = useState('')
 
+    const [currentPage, setCurrentPage] = useState(1)
+    const rowsPerPage = 20
+
     const token = localStorage.getItem('login')
 
     useEffect(() => {
@@ -33,7 +36,18 @@ const AllAttendance = () => {
             return matchesUsername && matchesDate
         })
         setFilteredAttendance(filtered)
+        setCurrentPage(1) // reset to page 1 on filter change
     }, [usernameFilter, dateFilter, attendanceAll])
+
+    const totalPages = Math.ceil(filteredAttendance.length / rowsPerPage)
+    const startIndex = (currentPage - 1) * rowsPerPage
+    const currentData = filteredAttendance.slice(startIndex, startIndex + rowsPerPage)
+
+    const handlePageChange = (page) => {
+        if (page >= 1 && page <= totalPages) {
+            setCurrentPage(page)
+        }
+    }
 
     return (
         <div>
@@ -68,9 +82,9 @@ const AllAttendance = () => {
                     </thead>
                     <tbody className="divide-y divide-gray-100">
                         {
-                            filteredAttendance.map((data, index) => (
+                            currentData.length > 0 ? currentData.map((data, index) => (
                                 <tr className='hover:bg-emerald-50 transition-all duration-150' key={index}>
-                                    <td className="px-6 py-4 font-medium text-gray-800">{index + 1}</td>
+                                    <td className="px-6 py-4 font-medium text-gray-800">{startIndex + index + 1}</td>
                                     <td className="px-6 py-4">{data?.intern?.username}</td>
                                     <td className="px-6 py-4">{new Date(data.attendanceDate).toLocaleDateString()}</td>
                                     <td className="px-6 py-4">{data.startAt}</td>
@@ -93,10 +107,43 @@ const AllAttendance = () => {
                                         </Link>
                                     </td>
                                 </tr>
-                            ))
+                            )) : (
+                                <tr>
+                                    <td colSpan="7" className="px-6 py-4 text-center text-gray-500">No records found.</td>
+                                </tr>
+                            )
                         }
                     </tbody>
                 </table>
+            </div>
+
+            {/* Pagination Controls */}
+            <div className="flex justify-center items-center mt-6 space-x-2">
+                <button
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    className={`px-4 py-1 rounded-xl border text-sm ${currentPage === 1 ? 'text-gray-400 border-gray-300 cursor-not-allowed' : 'text-emerald-600 border-emerald-400 hover:bg-emerald-50'}`}
+                    disabled={currentPage === 1}
+                >
+                    Previous
+                </button>
+                {
+                    Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                        <button
+                            key={page}
+                            onClick={() => handlePageChange(page)}
+                            className={`px-3 py-1 rounded-xl text-sm border ${currentPage === page ? 'bg-emerald-500 text-white' : 'text-gray-700 border-gray-300 hover:bg-gray-100'}`}
+                        >
+                            {page}
+                        </button>
+                    ))
+                }
+                <button
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    className={`px-4 py-1 rounded-xl border text-sm ${currentPage === totalPages ? 'text-gray-400 border-gray-300 cursor-not-allowed' : 'text-emerald-600 border-emerald-400 hover:bg-emerald-50'}`}
+                    disabled={currentPage === totalPages}
+                >
+                    Next
+                </button>
             </div>
         </div>
     )
