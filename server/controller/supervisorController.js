@@ -43,7 +43,36 @@ const supervisorController = {
         catch (err) {
             console.log(err)
         }
-    }
+    },
+
+    getAllSupervisorsData: async (req, res) => {
+        try {
+            const supervisorRole = await Role.findOne({ name: 'supervisor' });
+            if (!supervisorRole) {
+                return res.json({ Error: 'Supervisor role not found' });
+            }
+
+            const supervisors = await User.find({ roles: supervisorRole._id }).lean();
+
+            const result = await Promise.all(
+                supervisors.map(async (supervisor) => {
+                    const projects = await ProjectAssign.find({ suprvisor: supervisor._id }) // keep your typo
+                        .populate('project')
+                        .lean();
+
+                    return {
+                        supervisor,
+                        projects,
+                    };
+                })
+            );
+
+            return res.json({ Result: result });
+        }
+        catch (err) {
+            console.log(err)
+        }
+    },
 
 
 };
