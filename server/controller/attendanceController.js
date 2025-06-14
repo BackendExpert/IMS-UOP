@@ -1,5 +1,6 @@
 const Attendance = require("../model/Attendance");
 const User = require("../model/User");
+const jwt = require('jsonwebtoken')
 
 const AttendanceController = {
     createAttendance: async (req, res) => {
