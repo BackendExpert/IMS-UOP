@@ -85,16 +85,17 @@ const AttendanceController = {
         }
     },
 
-    getallinternAttendance: async(req, res) => {
-        try{
-            const getinteralldata = await Attendance.find().populate('Intern')
-
-            return res.json({ Result: getinteralldata })
-        }
-        catch(err){
-            console.log(err)
+    getallinternAttendance: async (req, res) => {
+        try {
+            const getinteralldata = await Attendance.find().populate('intern');
+            return res.json({ Result: getinteralldata });
+        } catch (err) {
+            console.log(err);
+            return res.json({ Error: "Something went wrong" });
         }
     }
+
+
 };
 
 module.exports = AttendanceController;

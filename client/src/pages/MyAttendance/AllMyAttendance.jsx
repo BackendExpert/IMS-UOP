@@ -73,9 +73,16 @@ const AllMyAttendance = () => {
                                         <td className="px-6 py-4 font-medium text-gray-800">{data.startAt}</td>
                                         <td className="px-6 py-4 font-medium text-gray-800">{data.leaveAt}</td>
                                         <td className="px-6 py-4 font-medium text-gray-800">
-                                            <span className="uppercase bg-emerald-100 text-emerald-700 text-xs font-semibold px-3 py-1 rounded-full">
-                                                {data.mode}
-                                            </span>
+                                            {
+                                                data.mode == 'onsite' ?
+                                                    <span className="uppercase bg-emerald-100 text-emerald-700 text-xs font-semibold px-3 py-1 rounded-full">
+                                                        onsite
+                                                    </span>
+                                                    :
+                                                    <span className="uppercase bg-yellow-100 text-yellow-700 text-xs font-semibold px-3 py-1 rounded-full">
+                                                        online
+                                                    </span>
+                                            }
                                         </td>
                                         <td className="px-6 py-4">
                                             <Link className="text-emerald-600 font-medium hover:underline">
