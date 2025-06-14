@@ -123,7 +123,7 @@ const ViewIntern = () => {
                         <div className="">
                             <DefaultBtn
                                 type='button'
-                                label={!openproject ? 'Assign Supervisor and Project' : 'Close'}
+                                label={!openproject ? 'Assign to Project' : 'Close'}
                                 onClick={headleBtnClick}
                             />
                         </div>
