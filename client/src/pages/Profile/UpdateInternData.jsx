@@ -104,7 +104,7 @@ const UpdateInternData = () => {
                 />
 
                 {
-                    interninfor?.dob === '' ?
+                    interninfor?.dob === '' || undefined || 'Invalid Date' ?
                         <div className="">
                             <DateInput
                                 label={'Enter Date of Birth'}

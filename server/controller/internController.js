@@ -100,6 +100,37 @@ const internController = {
         catch (err) {
             console.log(err)
         }
+    },
+
+    setInternShipEndAt: async (req, res) => {
+        try {
+            const internID = req.params.id;
+            const { enddata } = req.body;
+
+            if (!enddata) {
+                return res.json({ Status: "Error", Error: "End date is required." });
+            }
+
+            const endDate = new Date(enddata);
+
+            const intern = await Intern.findById(internID);
+            if (!intern) {
+                return res.json({ Status: "Error", Error: "Intern not found." });
+            }
+
+            intern.InternshipEndAt = endDate;
+
+            await intern.save();
+
+            return res.json({
+                Status: "Success",
+                Message: "Internship end date updated successfully.",
+            });
+
+        }
+        catch (err) {
+            console.log(err)
+        }
     }
 };
 

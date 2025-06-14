@@ -27,6 +27,21 @@ const InternSchema = new mongoose.Schema({
     isOneIntern: { type: Boolean, required: true, default: true },
 }, { timestamps: true });
 
+
+InternSchema.pre('save', function (next) {
+    if (this.InternshipEndAt) {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); 
+        const endDate = new Date(this.InternshipEndAt);
+        endDate.setHours(0, 0, 0, 0);
+
+        if (endDate <= today) {
+            this.isOneIntern = false;
+        }
+    }
+    next();
+});
+
 const Intern = mongoose.model('Intern', InternSchema);
 
 module.exports = Intern;

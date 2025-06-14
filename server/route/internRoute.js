@@ -14,4 +14,6 @@ router.get('/get-all-interns', authMiddleware, checkPermission('get-all-interns'
 
 router.get('/view-one-intern/:id', authMiddleware, checkPermission('view-one-intern'), internController.getoneintern)
 
+router.post('/set-internship-end/:id', authMiddleware, checkPermission('set-internship-end'), internController.setInternShipEndAt)
+
 module.exports = router;

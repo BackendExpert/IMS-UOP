@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import DefaultBtn from '../../components/Button/DefaultBtn'
 import ProjectSp from './ProjectSp'
+import InternEndDate from './InternEndDate'
 
 const ViewIntern = () => {
     const { id } = useParams()
@@ -25,6 +26,15 @@ const ViewIntern = () => {
     const headleBtnClick = () => {
         setopenproject(!openproject)
     }
+
+
+    const [internendat, setinternendat] = useState(false)
+
+    const headleInternEnd = () => {
+        setinternendat(!internendat)
+    }
+
+
 
 
     return (
@@ -117,6 +127,14 @@ const ViewIntern = () => {
                                 onClick={headleBtnClick}
                             />
                         </div>
+
+                        <div className="">
+                            <DefaultBtn
+                                type='button'
+                                label={!internendat ? 'Add Internship End Date' : 'Close'}
+                                onClick={headleInternEnd}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -126,6 +144,17 @@ const ViewIntern = () => {
                     openproject ?
                         <div className="bg-white p-8 rounded-lg shadow-lg mt-8">
                             <ProjectSp internID={id} />
+                        </div>
+                        :
+                        <div className=""></div>
+                }
+            </div>
+
+            <div className="">
+                {
+                    internendat ?
+                        <div className="bg-white p-8 rounded-lg shadow-lg mt-8">
+                            <InternEndDate InternID={id} />
                         </div>
                         :
                         <div className=""></div>
