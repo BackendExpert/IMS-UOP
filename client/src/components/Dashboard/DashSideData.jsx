@@ -33,12 +33,12 @@ const dashsidedata = [
         link: '/Dashboard/Attendance',
         icon: FaCalendarCheck
     },
-    {
-        id: 6,
-        name: 'Letters',
-        link: '/Dashboard/Letters',
-        icon: FaEnvelopeOpenText
-    },
+    // {
+    //     id: 6,
+    //     name: 'Letters',
+    //     link: '/Dashboard/Letters',
+    //     icon: FaEnvelopeOpenText
+    // },
 
     // supervisor
     {
@@ -49,12 +49,12 @@ const dashsidedata = [
     },
 
     // Intern
-    {
-        id: 9,
-        name: 'My Letters',
-        link: '/Dashboard/MyLetters',
-        icon: FaEnvelopeOpenText
-    },
+    // {
+    //     id: 9,
+    //     name: 'My Letters',
+    //     link: '/Dashboard/MyLetters',
+    //     icon: FaEnvelopeOpenText
+    // },
 
     // Supervisor
     {
