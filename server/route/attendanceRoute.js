@@ -9,4 +9,6 @@ router.post('/create-attendance', authMiddleware, checkPermission('create-attend
 
 router.get('/get-my-attendance', authMiddleware, checkPermission('get-my-attendance'), AttendanceController.getmyAttendance)
 
+router.get('/get-intern-attendance', authMiddleware, checkPermission('get-intern-attendance'), AttendanceController.getallinternAttendance)
+
 module.exports = router;

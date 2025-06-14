@@ -83,6 +83,17 @@ const AttendanceController = {
         catch (err) {
             console.log(err)
         }
+    },
+
+    getallinternAttendance: async(req, res) => {
+        try{
+            const getinteralldata = await Attendance.find().populate('Intern')
+
+            return res.json({ Result: getinteralldata })
+        }
+        catch(err){
+            console.log(err)
+        }
     }
 };
 
