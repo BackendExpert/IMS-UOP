@@ -7,5 +7,6 @@ const router = express.Router();
 
 router.post('/create-attendance', authMiddleware, checkPermission('create-attendance'), AttendanceController.createAttendance)
 
+router.get('/get-my-attendance', authMiddleware, checkPermission('get-my-attendance'), AttendanceController.getmyAttendance)
 
 module.exports = router;
