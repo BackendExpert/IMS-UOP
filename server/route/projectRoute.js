@@ -15,4 +15,6 @@ router.get('/get-projects-to-assign', authMiddleware, checkPermission('get-proje
 
 router.post('/intern-assign-project/:id', authMiddleware, checkPermission('intern-assign-project'), ProjectController.assignInterntoProject)
 
+router.get('/my-all-projects', authMiddleware, checkPermission('my-all-projects'), ProjectController.myallprojectintern)
+
 module.exports = router;

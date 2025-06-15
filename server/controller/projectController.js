@@ -1,5 +1,7 @@
+const Intern = require("../model/Intern");
 const Project = require("../model/Project");
 const ProjectAssign = require("../model/ProjectAssign");
+const jwt = require('jsonwebtoken')
 
 const ProjectController = {
     createProject: async (req, res) => {
@@ -96,6 +98,35 @@ const ProjectController = {
             }
 
             return res.json({ Status: "Success", Message: "The Intern Assign to Project Success" })
+
+        }
+        catch (err) {
+            console.log(err)
+        }
+    },
+
+    myallprojectintern: async (req, res) => {
+        try {
+            const authHeader = req.headers['authorization'];
+            if (!authHeader || !authHeader.startsWith('Bearer ')) {
+                return res.json({ Error: "Unauthorized: Missing or invalid token" });
+            }
+
+            const token = authHeader.split(' ')[1];
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            const userID = decoded.id;
+            console.log(userID)
+
+            const InternID = await Intern.findOne({ userID: userID })
+
+            const projects = await ProjectAssign.find({ intern: InternID._id })
+                .populate('project')       
+                .populate('suprvisor')    
+                .populate('intern');       
+
+            // console.log(projects);
+
+            return res.json({ Result: projects })
 
         }
         catch (err) {
