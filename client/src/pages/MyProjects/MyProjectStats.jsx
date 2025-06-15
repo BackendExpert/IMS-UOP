@@ -1,27 +1,47 @@
 import React from 'react'
 import { FolderKanban, Hammer, CheckCircle2 } from 'lucide-react'
+import { useEffect } from 'react'
+import { useState } from 'react'
+import axios from 'axios'
 
 const MyProjectStats = () => {
+    const token = localStorage.getItem('login')
+
+    const [myallprojects, setmyallprojects] = useState([])
+
+    useEffect(() => {
+        axios.get(import.meta.env.VITE_APP_API + '/project/my-all-projects', {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        })
+            .then(res => setmyallprojects(res.data.Result))
+            .catch(err => console.log(err))
+    }, [])
+
+    const ongoingProjects = myallprojects.filter(p => p.status === 'ongoing').length
+    const completedProjects = myallprojects.filter(p => p.status === 'completed').length
+
     const myprojects = [
         {
             id: 1,
             name: 'My Total Projects',
-            value: 5,
+            value: myallprojects.length,
             icon: FolderKanban,
             bgColor: 'bg-emerald-500',
         },
         {
             id: 2,
             name: 'Ongoing Projects',
-            value: 3,
-            icon: Hammer, 
+            value: ongoingProjects,
+            icon: Hammer,
             bgColor: 'bg-teal-500',
         },
         {
             id: 3,
             name: 'Completed Projects',
-            value: 2,
-            icon: CheckCircle2, 
+            value: completedProjects,
+            icon: CheckCircle2,
             bgColor: 'bg-cyan-500',
         },
     ]
