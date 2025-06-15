@@ -29,6 +29,7 @@ import ViewIntern from './pages/Interns/ViewIntern'
 import ManageSupervisors from './pages/Supervisors/ManageSupervisors'
 import MyAttendance from './pages/MyAttendance/MyAttendance'
 import Attendance from './pages/Attendance/Attendance'
+import MyProjects from './pages/MyProjects/MyProjects'
 
 
 function App() {    
@@ -71,6 +72,8 @@ function App() {
                         {/* Intern */}
 
                         <Route path='MyAttendance' element={<PrivateRoute element={<MyAttendance /> } /> } />
+
+                        <Route path='MyProjects' element={<PrivateRoute element={<MyProjects /> } /> } />
 
                     </Route>
                 </Routes>
