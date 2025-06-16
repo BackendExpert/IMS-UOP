@@ -161,8 +161,7 @@ const MyAllInterns = () => {
                                     <td className="px-6 py-4 font-medium text-gray-800">{getStatus(isCompleted)}</td>
                                     <td className="px-6 py-4">
                                         <Link
-                                            className="text-emerald-600 font-medium hover:underline"
-                                            to={`/intern/${intern._id}`}
+                                            className="text-emerald-600 font-medium hover:underline"                                           
                                         >
                                             View
                                         </Link>
