@@ -11,4 +11,6 @@ router.post('/assign-supervisor-project/:id', authMiddleware, checkPermission('a
 
 router.get('/get-all-supervisors', authMiddleware, checkPermission('get-all-supervisors'), supervisorController.getAllSupervisorsData)
 
+router.get('/supervisor-get-interns', authMiddleware, checkPermission('supervisor-get-interns'), supervisorController.getallmyinterns)
+
 module.exports = router;
