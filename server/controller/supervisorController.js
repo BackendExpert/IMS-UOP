@@ -89,7 +89,8 @@ const supervisorController = {
                 .populate({
                     path: 'intern',
                     populate: { path: 'userID' }
-                });
+                })
+                .populate('project');
             // console.log(JSON.stringify(getallinterns, null, 2));
 
             return res.json({ Result: getallinterns })

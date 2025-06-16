@@ -131,7 +131,6 @@ const MyAllInterns = () => {
                                 <th className="px-6 py-4 font-semibold tracking-wider">Join Date</th>
                                 <th className="px-6 py-4 font-semibold tracking-wider">Internship End Date</th>
                                 <th className="px-6 py-4 font-semibold tracking-wider">Status</th>
-                                <th className="px-6 py-4 font-semibold tracking-wider">Projects</th>
                                 <th className="px-6 py-4 font-semibold tracking-wider">Action</th>
                             </tr>
                         </thead>
@@ -160,20 +159,6 @@ const MyAllInterns = () => {
                                         {new Date(intern.InternshipEndAt).toLocaleDateString() || 'N/A'}
                                     </td>
                                     <td className="px-6 py-4 font-medium text-gray-800">{getStatus(isCompleted)}</td>
-                                    <td className="px-6 py-4 font-medium text-gray-800">
-                                        {projects.map((p, i) => (
-                                            <div key={i}>
-                                                <span>{p.projectId}</span> {/* Replace with project name if available */}
-                                                {' - '}
-                                                <span
-                                                    className={`font-semibold ${p.status === 'ongoing' ? 'text-teal-600' : 'text-gray-600'
-                                                        }`}
-                                                >
-                                                    {p.status.charAt(0).toUpperCase() + p.status.slice(1)}
-                                                </span>
-                                            </div>
-                                        ))}
-                                    </td>
                                     <td className="px-6 py-4">
                                         <Link
                                             className="text-emerald-600 font-medium hover:underline"
