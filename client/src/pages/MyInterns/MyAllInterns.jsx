@@ -112,12 +112,12 @@ const MyAllInterns = () => {
                                         </td>
                                         <td className="px-6 py-4 font-medium text-gray-800">
                                             {data.intern.map((i, idx) => (
-                                                <div key={idx}>{i.joinAt || 'N/A'}</div>
+                                                <div key={idx}>{new Date(i.joinAt).toLocaleDateString() || 'N/A'}</div>
                                             ))}
                                         </td>
                                         <td className="px-6 py-4 font-medium text-gray-800">
                                             {data.intern.map((i, idx) => (
-                                                <div key={idx}>{i.InternshipEndAt || 'N/A'}</div>
+                                                <div key={idx}>{new Date(i.InternshipEndAt).toLocaleDateString() || 'N/A'}</div>
                                             ))}
                                         </td>
                                         <td className="px-6 py-4 font-medium text-gray-800">
