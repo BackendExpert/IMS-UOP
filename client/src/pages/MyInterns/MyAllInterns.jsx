@@ -7,7 +7,7 @@ import Dropdown from '../../components/Form/Dropdown'
 const MyAllInterns = () => {
     const token = localStorage.getItem('login')
 
-    const [myallintern, setmyallintern] = useState([])
+    const [myallintern, setMyAllIntern] = useState([])
     const [filtered, setFiltered] = useState([])
 
     const [filters, setFilters] = useState({
@@ -15,17 +15,60 @@ const MyAllInterns = () => {
         status: '',
     })
 
-    useEffect(() => {
-        axios.get(import.meta.env.VITE_APP_API + '/supervisor/supervisor-get-interns', {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-            },
-        })
-            .then(res => {
-                setmyallintern(res.data.Result)
-                setFiltered(res.data.Result)
+    // Utility: Convert the API data to unique interns with their projects
+    const mapInternsWithProjects = (data) => {
+        // Use a map: key = intern userID._id, value = intern info + projects array
+        const internMap = new Map()
+
+        data.forEach((project) => {
+            project.intern.forEach((intern) => {
+                const id = intern.userID._id
+                const existing = internMap.get(id)
+
+                const isCompleted = new Date(intern.InternshipEndAt) < new Date()
+
+                if (existing) {
+                    // Add this project title/id and status to the intern's projects array
+                    existing.projects.push({
+                        projectId: project.project,
+                        status: project.status,
+                        // Add more project details here if you want, e.g. project name from backend
+                    })
+                    // Update overall internship status if needed (optional)
+                    if (!existing.isCompleted && isCompleted) {
+                        existing.isCompleted = true
+                    }
+                } else {
+                    internMap.set(id, {
+                        intern,
+                        projects: [
+                            {
+                                projectId: project.project,
+                                status: project.status,
+                            },
+                        ],
+                        isCompleted,
+                    })
+                }
             })
-            .catch(err => console.log(err))
+        })
+
+        return Array.from(internMap.values())
+    }
+
+    useEffect(() => {
+        axios
+            .get(import.meta.env.VITE_APP_API + '/supervisor/supervisor-get-interns', {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            .then((res) => {
+                const uniqueInterns = mapInternsWithProjects(res.data.Result)
+                setMyAllIntern(uniqueInterns)
+                setFiltered(uniqueInterns)
+            })
+            .catch((err) => console.log(err))
     }, [])
 
     const handleFilterChange = (e) => {
@@ -35,25 +78,25 @@ const MyAllInterns = () => {
 
         const today = new Date()
 
-        const filteredData = myallintern.filter(item =>
-            item.intern.some(i => {
-                const matchesUsername = i.userID?.username.toLowerCase().includes(updatedFilters.username.toLowerCase())
-                const isCompleted = new Date(i.InternshipEndAt) < today
-                const matchesStatus =
-                    updatedFilters.status === '' ||
-                    (updatedFilters.status === 'completed' && isCompleted) ||
-                    (updatedFilters.status === 'ongoing' && !isCompleted)
+        const filteredData = myallintern.filter(({ intern, isCompleted }) => {
+            const matchesUsername = intern.userID?.username
+                .toLowerCase()
+                .includes(updatedFilters.username.toLowerCase())
 
-                return matchesUsername && matchesStatus
-            })
-        )
+            const matchesStatus =
+                updatedFilters.status === '' ||
+                (updatedFilters.status === 'completed' && isCompleted) ||
+                (updatedFilters.status === 'ongoing' && !isCompleted)
+
+            return matchesUsername && matchesStatus
+        })
 
         setFiltered(filteredData)
     }
 
-    const getStatus = (endDate) => {
-        if (!endDate) return 'N/A'
-        return new Date(endDate) < new Date() ? 'Completed' : 'Ongoing'
+    const getStatus = (isCompleted) => {
+        if (isCompleted === undefined) return 'N/A'
+        return isCompleted ? 'Completed' : 'Ongoing'
     }
 
     return (
@@ -83,56 +126,64 @@ const MyAllInterns = () => {
                         <thead className="text-xs uppercase bg-emerald-100 text-emerald-700">
                             <tr>
                                 <th className="px-6 py-4 font-semibold tracking-wider">#</th>
-                                <th className="px-6 py-4 font-semibold tracking-wider">Project Title</th>
+                                <th className="px-6 py-4 font-semibold tracking-wider">Username</th>
                                 <th className="px-6 py-4 font-semibold tracking-wider">Github</th>
-                                <th className="px-6 py-4 font-semibold tracking-wider">Start Date</th>
+                                <th className="px-6 py-4 font-semibold tracking-wider">Join Date</th>
                                 <th className="px-6 py-4 font-semibold tracking-wider">Internship End Date</th>
                                 <th className="px-6 py-4 font-semibold tracking-wider">Status</th>
+                                <th className="px-6 py-4 font-semibold tracking-wider">Projects</th>
                                 <th className="px-6 py-4 font-semibold tracking-wider">Action</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-100">
-                            {
-                                filtered.map((data, index) => (
-                                    <tr className="hover:bg-emerald-50 transition-all duration-150" key={index}>
-                                        <td className="px-6 py-4 font-medium text-gray-800">{index + 1}</td>
-                                        <td className="px-6 py-4 font-medium text-gray-800">
-                                            {data.intern.map((i, idx) => (
-                                                <div key={idx}>{i.userID?.username || 'N/A'}</div>
-                                            ))}
-                                        </td>
-                                        <td className="px-6 py-4 font-medium text-gray-800">
-                                            {data.intern.map((i, idx) => (
-                                                <div key={idx}>
-                                                    <a className='text-blue-600 font-semibold hover:underline' href={i.github} target='_blank' rel='noopener noreferrer'>
-                                                        {i.github || 'N/A'}
-                                                    </a>
-                                                </div>
-                                            ))}
-                                        </td>
-                                        <td className="px-6 py-4 font-medium text-gray-800">
-                                            {data.intern.map((i, idx) => (
-                                                <div key={idx}>{new Date(i.joinAt).toLocaleDateString() || 'N/A'}</div>
-                                            ))}
-                                        </td>
-                                        <td className="px-6 py-4 font-medium text-gray-800">
-                                            {data.intern.map((i, idx) => (
-                                                <div key={idx}>{new Date(i.InternshipEndAt).toLocaleDateString() || 'N/A'}</div>
-                                            ))}
-                                        </td>
-                                        <td className="px-6 py-4 font-medium text-gray-800">
-                                            {data.intern.map((i, idx) => (
-                                                <div key={idx}>{getStatus(i.InternshipEndAt)}</div>
-                                            ))}
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            <Link className="text-emerald-600 font-medium hover:underline">
-                                                View
-                                            </Link>
-                                        </td>
-                                    </tr>
-                                ))
-                            }
+                            {filtered.map(({ intern, projects, isCompleted }, index) => (
+                                <tr
+                                    className="hover:bg-emerald-50 transition-all duration-150"
+                                    key={intern._id}
+                                >
+                                    <td className="px-6 py-4 font-medium text-gray-800">{index + 1}</td>
+                                    <td className="px-6 py-4 font-medium text-gray-800">{intern.userID?.username || 'N/A'}</td>
+                                    <td className="px-6 py-4 font-medium text-gray-800">
+                                        <a
+                                            className="text-blue-600 font-semibold hover:underline"
+                                            href={intern.github || '#'}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            {intern.github || 'N/A'}
+                                        </a>
+                                    </td>
+                                    <td className="px-6 py-4 font-medium text-gray-800">
+                                        {new Date(intern.joinAt).toLocaleDateString() || 'N/A'}
+                                    </td>
+                                    <td className="px-6 py-4 font-medium text-gray-800">
+                                        {new Date(intern.InternshipEndAt).toLocaleDateString() || 'N/A'}
+                                    </td>
+                                    <td className="px-6 py-4 font-medium text-gray-800">{getStatus(isCompleted)}</td>
+                                    <td className="px-6 py-4 font-medium text-gray-800">
+                                        {projects.map((p, i) => (
+                                            <div key={i}>
+                                                <span>{p.projectId}</span> {/* Replace with project name if available */}
+                                                {' - '}
+                                                <span
+                                                    className={`font-semibold ${p.status === 'ongoing' ? 'text-teal-600' : 'text-gray-600'
+                                                        }`}
+                                                >
+                                                    {p.status.charAt(0).toUpperCase() + p.status.slice(1)}
+                                                </span>
+                                            </div>
+                                        ))}
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        <Link
+                                            className="text-emerald-600 font-medium hover:underline"
+                                            to={`/intern/${intern._id}`}
+                                        >
+                                            View
+                                        </Link>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
