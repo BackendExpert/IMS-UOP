@@ -1,5 +1,6 @@
 import React from 'react';
 import { getUserInfoFromToken } from '../../utils/auth'; // Adjust path accordingly
+import DirDash from '../DirDash/DirDash';
 
 const DashHome = () => {
     const userInfo = getUserInfoFromToken();
@@ -22,9 +23,12 @@ const DashHome = () => {
     const roleRaw = userInfo.roles[0];
     const role = typeof roleRaw === 'string' ? roleRaw.toLowerCase() : roleRaw?.name?.toLowerCase();
 
+    if (role === 'director') {
+        return <DirDash />;
+    }
+
     let dashboardText = 'Dashboard';
     if (role === 'admin') dashboardText = 'Admin Dashboard';
-    else if (role === 'director') dashboardText = 'Director Dashboard';
     else if (role === 'warden') dashboardText = 'Warden Dashboard';
 
     return (
