@@ -17,6 +17,7 @@ const projectRoute = require('./route/projectRoute')
 const internRoute = require('./route/internRoute')
 const supervisorRoute = require('./route/supervisorRoute')
 const attendanceRoute = require('./route/attendanceRoute')
+const githubRoute = require('./route/githubRoute')
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -38,6 +39,7 @@ app.use('/project', projectRoute)
 app.use('/intern', internRoute)
 app.use('/supervisor', supervisorRoute)
 app.use('/attendance', attendanceRoute)
+app.use('/github', githubRoute)
 
 app.get('/', (req, res) => {
     res.send(`Server running on port ${PORT}`);
