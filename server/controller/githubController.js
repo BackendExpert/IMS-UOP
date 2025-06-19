@@ -41,7 +41,7 @@ const GithubController = {
             const firstOrg = await OrgSystem.findOne().sort({ _id: 1 });
 
             if (!firstOrg || !firstOrg.name) {
-                return resjson({ message: "No organization found in database" });
+                return res.json({ message: "No organization found in database" });
             }
 
             const orgName = firstOrg.name;
@@ -50,14 +50,16 @@ const GithubController = {
                 params: { per_page: 100 }
             });
 
+            const { data: memberData } = await github.get(`/orgs/${orgName}/members`);
+
             res.json({
-                Result: data,
-                orgNameFromDatabase: orgName
+                Result: { data, memberData },
             });
         } catch (err) {
             console.error(err);
             res.json({ message: 'Failed to fetch GitHub organization data' });
         }
+
     }
 };
 
