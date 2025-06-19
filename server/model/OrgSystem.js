@@ -14,6 +14,6 @@ const OrgSystemSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
-const OrgSystem = mongoose.model('OrgSystem', OrgSystemSchema);
+const OrgSystem = mongoose.model('OrgSystems', OrgSystemSchema);
 
 module.exports = OrgSystem;

@@ -5,9 +5,8 @@ const checkPermission = require('../middlewares/checkPermissionMiddleware');
 
 const router = express.Router();
 
-router.post('/createorg', authMiddleware, checkPermission('create-org-system'), GithubController.createOrginSystem)
+router.post('/create-org', authMiddleware, checkPermission('create-org'), GithubController.createOrginSystem)
 
-router.get('/user/:username', GithubController.getusername)
-router.get('/org/:org', GithubController.getorganization)
+router.get('/org', authMiddleware, checkPermission('get-organzation-data'), GithubController.getorganization)
 
 module.exports = router;

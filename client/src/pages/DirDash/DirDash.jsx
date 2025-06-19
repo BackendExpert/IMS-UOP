@@ -1,8 +1,11 @@
 import React from 'react'
+import GetOrgData from '../CommonDash/GetOrgData'
 
 const DirDash = () => {
     return (
-        <div>DirDash</div>
+        <div>
+            <GetOrgData />
+        </div>
     )
 }
 

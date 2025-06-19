@@ -32,7 +32,6 @@ import Attendance from './pages/Attendance/Attendance'
 import MyProjects from './pages/MyProjects/MyProjects'
 import MyInterns from './pages/MyInterns/MyInterns'
 
-
 function App() {    
     return (
         <>
