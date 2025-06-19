@@ -30,11 +30,19 @@ const InterUpdate = () => {
                 <div className="flex justify-between">
                     <h1 className="text-xl font-bold text-emerald-600 mb-8 mt-2">My Profile Update</h1>
                     <div className="-mt-4">
-                        <DefaultBtn
-                            type='button'
-                            label={isEdit ? 'Close' : 'Create My Information'}
-                            onClick={headleEdit}
-                        />
+                        {
+                            !interninfor.dob ?
+                                <div className="">
+                                    <DefaultBtn
+                                        type='button'
+                                        label={isEdit ? 'Close' : 'Create My Information'}
+                                        onClick={headleEdit}
+                                    />
+                                </div>
+                                :
+                                <div className=""></div>
+                        }
+
                     </div>
                 </div>
 
@@ -75,7 +83,7 @@ const InterUpdate = () => {
                         <InternInfor
                             title="Github Username"
                             value={<div>
-                                <a href={`${interninfor?.github}`} target='_blank'>
+                                <a href={`https://github.com/${interninfor?.github}`} target='_blank'>
                                     <p className="text-blue-500 hover:underline">{interninfor?.github}</p>
                                 </a>
                             </div>}
