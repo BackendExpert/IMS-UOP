@@ -9,4 +9,6 @@ router.post('/create-org', authMiddleware, checkPermission('create-org'), Github
 
 router.get('/org', authMiddleware, checkPermission('get-organzation-data'), GithubController.getorganization)
 
+router.get('/get-username-data', authMiddleware, checkPermission('get-username-data'), GithubController.getusernamedata)
+
 module.exports = router;

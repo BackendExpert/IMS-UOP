@@ -1,5 +1,7 @@
+const Intern = require("../model/Intern");
 const OrgSystem = require("../model/OrgSystem");
 const { github } = require("../service/github");
+const jwt = require('jsonwebtoken')
 
 const GithubController = {
     createOrginSystem: async (req, res) => {
@@ -59,7 +61,29 @@ const GithubController = {
             console.error(err);
             res.json({ message: 'Failed to fetch GitHub organization data' });
         }
+    },
 
+    getusernamedata: async (req, res) => {
+        try {
+            const token = req.header('Authorization');
+            if (!token || !token.startsWith('Bearer ')) {
+                return res.json({ Error: "Missing or invalid token" });
+            }
+
+            const decoded = jwt.verify(token.replace('Bearer ', ''), process.env.JWT_SECRET);
+            const UserID = decoded.id;
+
+            const getintern = await Intern.findOne({ userID: UserID })
+
+            const { data } = await github.get(`/users/${getintern.github}`, {
+                params: { per_page: 100 }
+            });
+
+            return res.json({ Result: data })
+        }
+        catch (err) {
+            console.log(err)
+        }
     }
 };
 
