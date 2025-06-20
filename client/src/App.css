@@ -1,0 +1,29 @@
+/* Base calendar styles */
+.custom-calendar {
+    border: none;
+    font-family: inherit;
+    border-radius: 0.75rem;
+    overflow: hidden;
+}
+
+/* Smaller font and tighter spacing */
+.small-calendar {
+    font-size: 0.75rem;
+}
+
+/* Selected day */
+.custom-calendar .react-calendar__tile--active {
+    background: #10B981 !important; /* emerald-500 */
+    color: white;
+}
+
+/* Today's date */
+.custom-calendar .react-calendar__tile--now {
+    background: #14B8A6 !important; /* teal-500 */
+    color: white;
+}
+
+/* Hover */
+.custom-calendar .react-calendar__tile:hover {
+    background-color: #10B98122;
+}

@@ -23,7 +23,7 @@ const OrgMembers = () => {
         <div className="">
             <div>
                 <h3 className="text-xl text-teal-500 font-semibold mb-3">Organization Members:</h3>
-                <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+                <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     {members.map((member) => (
                         <li key={member.id} className="p-4 border border-emerald-500 rounded shadow-sm">
                             <div className="flex items-center gap-4">

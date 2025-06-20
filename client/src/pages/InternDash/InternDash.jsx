@@ -4,6 +4,7 @@ import GetInternAllData from './GetInternAllData'
 import OrgMembers from './OrgMembers'
 import OnlyOrg from './OnlyOrg'
 import InternDashStatus from './InternDashStatus'
+import PieCalander from './PieCalander'
 
 const InternDash = () => {
     return (
@@ -16,11 +17,15 @@ const InternDash = () => {
                     <OnlyOrg />
                 </div>
                 <div className="">
-                    <OrgMembers />
-                </div>
-                <div className="">
                     <InternDashStatus />
                 </div>
+                <div className="">
+                    <PieCalander />
+                </div>
+
+            </div>
+            <div className="">
+                <OrgMembers />
             </div>
         </div>
     )
