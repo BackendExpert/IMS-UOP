@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Pie } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
@@ -6,13 +6,26 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
+import axios from 'axios';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PieChart = () => {
-    const totalProjects = 20;
-    const ongoingProjects = 7;
-    const completedProjects = totalProjects - ongoingProjects;
+    const token = localStorage.getItem('login');
+    const [myAllProjects, setMyAllProjects] = useState([]);
+
+    useEffect(() => {
+        axios.get(import.meta.env.VITE_APP_API + '/project/my-all-projects', {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        })
+            .then(res => setMyAllProjects(res.data.Result))
+            .catch(err => console.error(err));
+    }, []);
+
+    const ongoingProjects = myAllProjects.filter(p => p.status === 'ongoing').length;
+    const completedProjects = myAllProjects.filter(p => p.status === 'completed').length;
 
     const data = {
         labels: ['Ongoing Projects', 'Completed Projects'],
@@ -20,7 +33,7 @@ const PieChart = () => {
             {
                 data: [ongoingProjects, completedProjects],
                 backgroundColor: ['#0EA5E9', '#8B5CF6'], // sky-500, violet-500
-                borderColor: ['#10B981', '#14B8A6'],
+                borderColor: ['#0EA5E9', '#8B5CF6'],
                 borderWidth: 1,
             },
         ],
