@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import GetInternAllData from './GetInternAllData'
 import OrgMembers from './OrgMembers'
 import OnlyOrg from './OnlyOrg'
+import InternDashStatus from './InternDashStatus'
 
 const InternDash = () => {
     return (
@@ -16,6 +17,9 @@ const InternDash = () => {
                 </div>
                 <div className="">
                     <OrgMembers />
+                </div>
+                <div className="">
+                    <InternDashStatus />
                 </div>
             </div>
         </div>
