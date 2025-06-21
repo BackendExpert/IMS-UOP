@@ -86,7 +86,7 @@ const ViewOneProject = () => {
                             </div>
 
                         </div>
-
+                        
 
                         <div className="">
                             <DefaultBtn
@@ -94,6 +94,14 @@ const ViewOneProject = () => {
                                 label='Assign Supervisor'
                                 onClick={headleAssingSp}
                             />
+                        </div>
+                        <div className="">
+                            <a href={`/Dashboard/Github-status-project/${projectdata?.getproject?.giturl}`}>
+                                <DefaultBtn
+                                    type='button'
+                                    label='View Project Status'
+                                />
+                            </a>
                         </div>
                     </div>
                 </div>

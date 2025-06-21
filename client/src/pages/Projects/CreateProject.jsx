@@ -75,12 +75,12 @@ const CreateProject = () => {
                     />
 
                     <DefaultInput
-                        label={"Enter Github Repository Link"}
+                        label={"Enter Github Repository Name"}
                         type={'url'}
                         name={'giturl'}
                         value={projectdata.giturl}
                         required
-                        placeholder={"Github Repository Link"}
+                        placeholder={"Github Repository Name"}
                         onChange={handleInputChange}
                     />
 

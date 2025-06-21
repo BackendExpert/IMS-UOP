@@ -31,6 +31,7 @@ import MyAttendance from './pages/MyAttendance/MyAttendance'
 import Attendance from './pages/Attendance/Attendance'
 import MyProjects from './pages/MyProjects/MyProjects'
 import MyInterns from './pages/MyInterns/MyInterns'
+import GithubStatusProject from './pages/Projects/GithubStatusProject'
 
 function App() {    
     return (
@@ -63,6 +64,7 @@ function App() {
                         <Route path='Projects' element={<PrivateRoute element={<ManageProjects /> } /> } />
                         <Route path='Create-project' element={<PrivateRoute element={<CreateProject /> } /> } />
                         <Route path='View-one-project/:id' element={<PrivateRoute element={<ViewOneProject /> } /> } />
+                        <Route path='Github-status-project/:name' element={<PrivateRoute element={<GithubStatusProject /> } /> } />
 
                         <Route path='ManageSupervisor' element={<PrivateRoute element={<ManageSupervisors /> } /> } />
 
