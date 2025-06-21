@@ -11,6 +11,6 @@ router.get('/org', authMiddleware, checkPermission('get-organzation-data'), Gith
 
 router.get('/get-username-data', authMiddleware, checkPermission('get-username-data'), GithubController.getusernamedata)
 
-router.get('/get-project-repo/:name')
+router.get('/get-project-repo/:name', GithubController.getprojectrespo)
 
 module.exports = router;

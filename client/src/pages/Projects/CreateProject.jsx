@@ -76,7 +76,7 @@ const CreateProject = () => {
 
                     <DefaultInput
                         label={"Enter Github Repository Name"}
-                        type={'url'}
+                        type={'text'}
                         name={'giturl'}
                         value={projectdata.giturl}
                         required

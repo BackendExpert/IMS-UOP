@@ -86,11 +86,24 @@ const GithubController = {
         }
     },
 
-    getprojectrespo: async(req, res) => {
-        try{
-            
+    getprojectrespo: async (req, res) => {
+        try {
+            const reponame = req.params.name
+            const firstOrg = await OrgSystem.findOne().sort({ _id: 1 });
+
+            if (!firstOrg || !firstOrg.name) {
+                return res.json({ message: "No organization found in database" });
+            }
+
+            const orgName = firstOrg.name;
+
+            const { data } = await github.get(`/repos/${orgName}/${reponame}`, {
+                params: { per_page: 100 }
+            });
+
+            return res.json({ Result: data })
         }
-        catch(err){
+        catch (err) {
             console.log(err)
         }
     }
