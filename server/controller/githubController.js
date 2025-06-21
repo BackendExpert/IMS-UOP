@@ -88,7 +88,7 @@ const GithubController = {
 
     getprojectrespo: async (req, res) => {
         try {
-            const reponame = req.params.name
+            const reponame = req.params.name;
             const firstOrg = await OrgSystem.findOne().sort({ _id: 1 });
 
             if (!firstOrg || !firstOrg.name) {
@@ -97,16 +97,51 @@ const GithubController = {
 
             const orgName = firstOrg.name;
 
-            const { data } = await github.get(`/repos/${orgName}/${reponame}`, {
-                params: { per_page: 100 }
+            // Get repository metadata
+            const { data: repoData } = await github.get(`/repos/${orgName}/${reponame}`);
+
+            // Get contributors
+            let contributors = [];
+            try {
+                const response = await github.get(`/repos/${orgName}/${reponame}/contributors`);
+                contributors = response.data;
+            } catch (e) {
+                // Silent fail
+            }
+
+            // Get last commit
+            let lastCommit = null;
+            let lastCommitter = null;
+            try {
+                const branch = repoData.default_branch || 'master';
+                const response = await github.get(`/repos/${orgName}/${reponame}/commits`, {
+                    params: { sha: branch, per_page: 1 }
+                });
+
+                if (response.data.length > 0) {
+                    lastCommit = response.data[0];
+                    lastCommitter = lastCommit.commit.committer.name;
+                }
+            } catch (e) {
+                // Silent fail
+            }
+
+            return res.json({
+                result: {
+                    repoData,
+                    contributors,
+                    lastCommit,
+                    lastCommitter
+                }
             });
 
-            return res.json({ Result: data })
-        }
-        catch (err) {
-            console.log(err)
+        } catch (err) {
+            console.log("Main Error:", err);
+            return res.json({ error: "Internal error occurred while processing repository data" });
         }
     }
+
+
 };
 
 module.exports = GithubController;
