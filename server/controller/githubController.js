@@ -89,13 +89,17 @@ const GithubController = {
     getprojectrespo: async (req, res) => {
         try {
             const reponame = req.params.name;
-            const firstOrg = await OrgSystem.findOne().sort({ _id: 1 });
+            // const firstOrg = await OrgSystem.findOne().sort({ _id: 1 });
 
-            if (!firstOrg || !firstOrg.name) {
-                return res.json({ message: "No organization found in database" });
-            }
+            // if (!firstOrg || !firstOrg.name) {
+            //     return res.json({ message: "No organization found in database" });
+            // }
 
-            const orgName = firstOrg.name;
+            // const orgName = firstOrg.name;
+
+            
+            const orgName = 'TeamProjectsReact'
+            // console.log(orgName, reponame)
 
             // Get repository metadata
             const { data: repoData } = await github.get(`/repos/${orgName}/${reponame}`);
@@ -134,6 +138,8 @@ const GithubController = {
                     lastCommitter
                 }
             });
+
+            
 
         } catch (err) {
             console.log("Main Error:", err);

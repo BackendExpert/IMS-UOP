@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import AssignSp from './AssignSp'
 import DefaultBtn from '../../components/Button/DefaultBtn'
 
@@ -86,7 +86,7 @@ const ViewOneProject = () => {
                             </div>
 
                         </div>
-                        
+
 
                         <div className="">
                             <DefaultBtn
@@ -96,12 +96,12 @@ const ViewOneProject = () => {
                             />
                         </div>
                         <div className="">
-                            <a href={`/Dashboard/Github-status-project/${projectdata?.getproject?.giturl}`}>
+                            <Link to={`/Dashboard/Github-status-project/${projectdata?.getproject?.pname}`}>
                                 <DefaultBtn
                                     type='button'
                                     label='View Project Status'
                                 />
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
